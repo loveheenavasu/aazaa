@@ -1,0 +1,20 @@
+{% block subject %}
+    Lidmaatschap - Aazaa Academie
+{% endblock %}
+{% block title %}
+    Je lidmaatschap van de Aazaa Academie
+{% endblock %}
+{% block content %}
+
+    Beste {% if user.firstname is not empty %} {{ user.firstname }} {{ user.lastname }}{% else %}{{ user.username }}{% endif %}<br>
+    <br>
+    De betaling voor de lidmaatschap bij Aazaa.org is helaas niet geluk!<br><br>
+    Probeer het nog een keer.<br>
+    <br>
+    Mocht het weer niet lukken, dan kun je een email sturen naar <a href="mailto:info@aazaa.nl">info@aazaa.nl</a> en dan lossen we het voor je op.
+    <br><br>
+    Aazaa Academie<br>
+    www.aazaa.nl
+{% endblock %}
+
+{% extends 'Email/base.html.twig' %}

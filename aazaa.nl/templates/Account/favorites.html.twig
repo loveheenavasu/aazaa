@@ -1,0 +1,41 @@
+{% block accountContent %}
+    <div class="block dark">
+        <h2>Favorieten</h2>
+        <div class="row">
+            {% if errormessage is defined and not empty %}
+                <div>{{ errormessage }}</div>
+            {% endif %}
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                {% if app.user.favorites | length  < 1%}
+                    Geen favorieten
+                {% else %}
+                    {% for favorite in app.user.favorites %}
+                        <div class="col-xs-12 col-sm-6">
+                        <div class="block inline-block video-containeradmin">
+                            <div class="video-bottom">
+                                <span class="text top">{% if favorite.pageContent.previewTop | length >1 %}{{ favorite.pageContent.previewTop }}{% else %}{{ favorite.pageContent.category.name }}{% endif %}</span>
+
+                                <div class="image-container">
+                                    <img src="{{ asset('images/logo/logo-91px-100px.png') }}"/>
+                                </div>
+                                <span class="text bottom">
+                                    <button type="button" class="btn btn-admin pull-right favoriteAction" data-favorite="{{ favorite.pageContent.id }}" data-reload="true">Verwijderen</button>
+                                    <a class="btn btn-admin pull-left" href="{{ path('page_loader', {'slug': favorite.pageContent.path }) }}">Bekijken</a>
+                                </span>
+                            </div>
+                       </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
+
+{% extends 'Account/base.html.twig' %}

@@ -1,0 +1,150 @@
+<?php
+
+namespace Symfony\Component\VarExporter\Internal;
+
+return $getExpiry ? PHP_INT_MAX : Hydrator::hydrate(
+    $o = [
+        clone (($p = &Registry::$prototypes)['Doctrine\\ORM\\Query\\ParserResult'] ?? Registry::p('Doctrine\\ORM\\Query\\ParserResult')),
+        clone ($p['Doctrine\\ORM\\Query\\Exec\\SingleSelectExecutor'] ?? Registry::p('Doctrine\\ORM\\Query\\Exec\\SingleSelectExecutor')),
+        clone ($p['Doctrine\\ORM\\Query\\ResultSetMapping'] ?? Registry::p('Doctrine\\ORM\\Query\\ResultSetMapping')),
+    ],
+    null,
+    [
+        'Doctrine\\ORM\\Query\\ParserResult' => [
+            '_sqlExecutor' => [
+                $o[1],
+            ],
+            '_resultSetMapping' => [
+                $o[2],
+            ],
+            '_parameterMappings' => [
+                [
+                    'startDate' => [
+                        0,
+                    ],
+                    'endDate' => [
+                        1,
+                    ],
+                    'active' => [
+                        2,
+                    ],
+                    'type' => [
+                        3,
+                    ],
+                    'now' => [
+                        4,
+                    ],
+                ],
+            ],
+        ],
+        'Doctrine\\ORM\\Query\\Exec\\AbstractSqlExecutor' => [
+            '_sqlStatements' => [
+                1 => 'SELECT w0_.id AS id_0, w0_.title AS title_1, w0_.id AS id_2, w0_.title AS title_3, w0_.type_workshop AS type_workshop_4, w0_.description AS description_5, w0_.description_short AS description_short_6, w0_.start_datetime AS start_datetime_7, w0_.end_datetime AS end_datetime_8, w0_.seats AS seats_9, w0_.price AS price_10, w0_.slug AS slug_11, w0_.active AS active_12, w0_.video_chat_session_id AS video_chat_session_id_13, w0_.created AS created_14, w0_.updated AS updated_15, w0_.slug AS slug_16, DATE(w0_.start_datetime) AS sclr_17, TIME(w0_.start_datetime) AS sclr_18, TIME(w0_.end_datetime) AS sclr_19, w0_.description_short AS description_short_20, w1_.color AS color_21, w1_.name AS name_22, w0_.location_id AS location_id_23 FROM workshops w0_ INNER JOIN workshop_location w1_ ON w0_.location_id = w1_.id WHERE w0_.start_datetime >= ? AND w0_.start_datetime <= ? AND w0_.active = ? AND w0_.type_workshop = ? AND w0_.start_datetime >= ?',
+            ],
+        ],
+        'stdClass' => [
+            'isMixed' => [
+                2 => true,
+            ],
+            'aliasMap' => [
+                2 => [
+                    'w' => 'App\\Entity\\Workshop',
+                ],
+            ],
+            'fieldMappings' => [
+                2 => [
+                    'id_2' => 'id',
+                    'title_3' => 'title',
+                    'type_workshop_4' => 'type',
+                    'description_5' => 'description',
+                    'description_short_6' => 'descriptionShort',
+                    'start_datetime_7' => 'startDatetime',
+                    'end_datetime_8' => 'endDatetime',
+                    'seats_9' => 'seats',
+                    'price_10' => 'price',
+                    'slug_11' => 'slug',
+                    'active_12' => 'active',
+                    'video_chat_session_id_13' => 'videoChatSessionId',
+                    'created_14' => 'created',
+                    'updated_15' => 'updated',
+                ],
+            ],
+            'scalarMappings' => [
+                2 => [
+                    'id_0' => 'id',
+                    'title_1' => 'title',
+                    'slug_16' => 'slug',
+                    'sclr_17' => 'date',
+                    'sclr_18' => 'startTime',
+                    'sclr_19' => 'endTime',
+                    'description_short_20' => 'description',
+                    'color_21' => 'color',
+                    'name_22' => 'locationName',
+                ],
+            ],
+            'typeMappings' => [
+                2 => [
+                    'id_0' => 'integer',
+                    'title_1' => 'string',
+                    'slug_16' => 'string',
+                    'sclr_17' => 'string',
+                    'sclr_18' => 'string',
+                    'sclr_19' => 'string',
+                    'description_short_20' => 'text',
+                    'color_21' => 'string',
+                    'name_22' => 'string',
+                    'location_id_23' => 'integer',
+                ],
+            ],
+            'entityMappings' => [
+                2 => [
+                    'w' => null,
+                ],
+            ],
+            'metaMappings' => [
+                2 => [
+                    'location_id_23' => 'location_id',
+                ],
+            ],
+            'columnOwnerMap' => [
+                2 => [
+                    'id_2' => 'w',
+                    'title_3' => 'w',
+                    'type_workshop_4' => 'w',
+                    'description_5' => 'w',
+                    'description_short_6' => 'w',
+                    'start_datetime_7' => 'w',
+                    'end_datetime_8' => 'w',
+                    'seats_9' => 'w',
+                    'price_10' => 'w',
+                    'slug_11' => 'w',
+                    'active_12' => 'w',
+                    'video_chat_session_id_13' => 'w',
+                    'created_14' => 'w',
+                    'updated_15' => 'w',
+                    'location_id_23' => 'w',
+                ],
+            ],
+            'declaringClasses' => [
+                2 => [
+                    'id_2' => 'App\\Entity\\Workshop',
+                    'title_3' => 'App\\Entity\\Workshop',
+                    'type_workshop_4' => 'App\\Entity\\Workshop',
+                    'description_5' => 'App\\Entity\\Workshop',
+                    'description_short_6' => 'App\\Entity\\Workshop',
+                    'start_datetime_7' => 'App\\Entity\\Workshop',
+                    'end_datetime_8' => 'App\\Entity\\Workshop',
+                    'seats_9' => 'App\\Entity\\Workshop',
+                    'price_10' => 'App\\Entity\\Workshop',
+                    'slug_11' => 'App\\Entity\\Workshop',
+                    'active_12' => 'App\\Entity\\Workshop',
+                    'video_chat_session_id_13' => 'App\\Entity\\Workshop',
+                    'created_14' => 'App\\Entity\\Workshop',
+                    'updated_15' => 'App\\Entity\\Workshop',
+                ],
+            ],
+        ],
+    ],
+    $o[0],
+    []
+);

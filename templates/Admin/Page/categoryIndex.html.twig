@@ -1,0 +1,105 @@
+{% block stylesheets %}
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+{% endblock %}
+{% block content %}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>Categorieën</h1>
+        </div>
+        <div class="col-xs-push-6 col-xs-6">
+            <a class="pull-right btn btn-danger" href="{{ path('admin_page_category_edit') }}"><i class="fa fa-plus"></i> Nieuw</a>
+        </div>
+
+        <div class="col-xs-12 admin-menu" >
+            <h2>Menu</h2>
+            <div class="row">
+                <div class="col-md-6 col-xs-12">
+                    <h3>Boven</h3>
+                    <ul id="Boven" class="sort_these">
+                        {% for cat in category %}
+                            {% if cat.viewPosition is not empty %}
+                                {% if cat.viewPosition == 'Boven' %}
+                                    <li class="ui-state-default" rel="{{ cat.id }}">
+                                        <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>{{ cat.name }}
+                                        <a class="btn btn-warning pull-right" href="{{ path('admin_page_category_edit', { 'categoryId': cat.id }) }}"><i class="far fa-edit"></i> Bewerken</a>
+                                    </li>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+
+                    <h3>Hoofdmenu</h3>
+                    <ul id="Hoofdmenu" class="sort_these">
+                        {% for cat in category %}
+                            {% if cat.viewPosition is not empty %}
+                                {% if cat.viewPosition == 'Hoofdmenu' %}
+                                    <li class="ui-state-default" rel="{{ cat.id }}">
+                                        <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>{{ cat.name }}
+                                        <a class="btn btn-warning pull-right" href="{{ path('admin_page_category_edit', { 'categoryId': cat.id }) }}"><i class="far fa-edit"></i> Bewerken</a>
+                                    </li>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="col-md-6 col-xs-12">
+                    <h3>Pagina Menu</h3>
+                    <ul id="Pagina_menu" class="sort_these">
+                        {% for cat in category %}
+                            {% if cat.viewPosition is not empty %}
+                                {% if cat.viewPosition == 'Pagina_menu' %}
+                                    <li class="ui-state-default" rel="{{ cat.id }}">
+                                        <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>{{ cat.name }}
+                                        <a class="btn btn-warning pull-right" href="{{ path('admin_page_category_edit', { 'categoryId': cat.id }) }}"><i class="far fa-edit"></i> Bewerken</a>
+                                    </li>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                    <h3>Niet in het menu</h3>
+                    {% for cat in category %}
+                        {% if cat.viewPosition is empty %}
+                            <li class="ui-state-default" rel="{{ cat.id }}">
+                                {{ cat.name }}
+                                <a class="btn btn-warning pull-right" href="{{ path('admin_page_category_edit', { 'categoryId': cat.id }) }}"><i class="far fa-edit"></i> Bewerken</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript_footer %}
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(function() {
+            var index;
+            $( ".sort_these" ).sortable({
+                placeholder: "ui-state-highlight",
+                start: function (event, ui) {
+                    var start_pos = ui.item.index();
+                    ui.item.data('start_pos', start_pos);
+                },
+                change: function (event, ui) {
+                    index = ui.placeholder.index();
+                },
+                stop: function (event, ui) {
+                    var sortItem = $(ui.item);
+                    $.post(Routing.generate('admin_page_category_sort'),{
+                        id: sortItem.attr('rel'),
+                        position: index,
+                        viewPosition: sortItem.parent().attr('id')
+                    },
+                    function(data,status){
+                    });
+                }
+            });
+        });
+    </script>
+{% endblock %}
+
+{% extends 'Admin/base.html.twig' %}
+

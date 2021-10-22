@@ -1,0 +1,456 @@
+body,html{
+    height: 100%;
+}
+
+/* remove outer padding */
+.main .row{
+    padding: 0px;
+    margin: 0px;
+}
+
+/*Remove rounded coners*/
+
+nav.sidebar.navbar {
+    border-radius: 0px;
+}
+
+nav.sidebar, .main{
+    -webkit-transition: margin 200ms ease-out;
+    -moz-transition: margin 200ms ease-out;
+    -o-transition: margin 200ms ease-out;
+    transition: margin 200ms ease-out;
+}
+
+/* Add gap to nav and right windows.*/
+.main{
+    padding: 10px 10px 0 10px;
+}
+
+/* .....NavBar: Icon only with coloring/layout.....*/
+
+/*small/medium side display*/
+@media (min-width: 768px) {
+
+    /*Allow main to be next to Nav*/
+    .main{
+        position: absolute;
+        width: calc(100% - 40px); /*keeps 100% minus nav size*/
+        margin-left: 40px;
+        float: right;
+    }
+
+    /*lets nav bar to be showed on mouseover*/
+    nav.sidebar:hover + .main{
+        margin-left: 265px;
+    }
+
+    /*Center Brand*/
+    nav.sidebar.navbar.sidebar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
+        margin-left: 0px;
+    }
+    /*Center Brand*/
+    nav.sidebar .navbar-brand, nav.sidebar .navbar-header{
+        text-align: center;
+        width: 100%;
+        margin-left: 0px;
+    }
+
+    /*Center Icons*/
+    nav.sidebar a{
+        padding-right: 13px;
+    }
+
+    /*adds border top to first nav box */
+    nav.sidebar .navbar-nav > li:first-child{
+        border-top: 1px #e5e5e5 solid;
+    }
+
+    /*adds border to bottom nav boxes*/
+    nav.sidebar .navbar-nav > li{
+        border-bottom: 1px #e5e5e5 solid;
+    }
+
+    /* Colors/style dropdown box*/
+    nav.sidebar .navbar-nav .open .dropdown-menu {
+        position: static;
+        float: none;
+        width: auto;
+        margin-top: 0;
+        background-color: transparent;
+        border: 0;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+
+    /*allows nav box to use 100% width*/
+    nav.sidebar .navbar-collapse, nav.sidebar .container-fluid{
+        padding: 0 0px 0 0px;
+    }
+
+    /*colors dropdown box text */
+    .navbar-inverse .navbar-nav .open .dropdown-menu>li>a {
+        color: #ffffff;
+    }
+
+    /*gives sidebar width/height*/
+    nav.sidebar{
+        width: 265px;
+        height: 100%;
+        margin-left: -160px;
+        float: left;
+        z-index: 8000;
+        margin-bottom: 0px;
+    }
+
+    /*give sidebar 100% width;*/
+    nav.sidebar li {
+        width: 100%;
+    }
+
+    /* Move nav to full on mouse over*/
+    nav.sidebar:hover{
+        margin-left: 0px;
+    }
+    /*for hiden things when navbar hidden*/
+    .forAnimate{
+        opacity: 0;
+    }
+}
+
+/* .....NavBar: Fully showing nav bar..... */
+
+@media (min-width: 1330px) {
+
+    /*Allow main to be next to Nav*/
+    .main{
+        width: calc(100% - 265px); /*keeps 100% minus nav size*/
+        margin-left: 265px;
+    }
+
+    /*Show all nav*/
+    nav.sidebar{
+        margin-left: 0px;
+        float: left;
+    }
+    /*Show hidden items on nav*/
+    nav.sidebar .forAnimate{
+        opacity: 1;
+    }
+}
+
+nav.sidebar .navbar-nav .open .dropdown-menu>li>a:hover, nav.sidebar .navbar-nav .open .dropdown-menu>li>a:focus {
+    color: #CCC;
+    background-color: transparent;
+}
+
+nav:hover .forAnimate{
+    opacity: 1;
+}
+section{
+    padding-left: 15px;
+}
+
+
+.croppie-container {
+    width: 100%;
+    height: 100%;
+}
+
+.croppie-container .cr-image {
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: 0 0;
+    max-height: none;
+    max-width: none;
+}
+
+.croppie-container .cr-boundary {
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+}
+
+.croppie-container .cr-viewport,
+.croppie-container .cr-resizer {
+    position: absolute;
+    border: 2px solid #fff;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    box-shadow: 0 0 2000px 2000px rgba(0, 0, 0, 0.5);
+    z-index: 0;
+}
+
+.croppie-container .cr-resizer {
+    z-index: 2;
+    box-shadow: none;
+    pointer-events: none;
+}
+
+.croppie-container .cr-resizer-vertical,
+.croppie-container .cr-resizer-horisontal {
+    position: absolute;
+    pointer-events: all;
+}
+
+.croppie-container .cr-resizer-vertical::after,
+.croppie-container .cr-resizer-horisontal::after {
+    display: block;
+    position: absolute;
+    box-sizing: border-box;
+    border: 1px solid black;
+    background: #fff;
+    width: 10px;
+    height: 10px;
+    content: '';
+}
+
+.croppie-container .cr-resizer-vertical {
+    bottom: -5px;
+    cursor: row-resize;
+    width: 100%;
+    height: 10px;
+}
+
+.croppie-container .cr-resizer-vertical::after {
+    left: 50%;
+    margin-left: -5px;
+}
+
+.croppie-container .cr-resizer-horisontal {
+    right: -5px;
+    cursor: col-resize;
+    width: 10px;
+    height: 100%;
+}
+
+.croppie-container .cr-resizer-horisontal::after {
+    top: 50%;
+    margin-top: -5px;
+}
+
+.croppie-container .cr-original-image {
+    display: none;
+}
+
+.croppie-container .cr-vp-circle {
+    border-radius: 50%;
+}
+
+.croppie-container .cr-overlay {
+    z-index: 1;
+    position: absolute;
+    cursor: move;
+    touch-action: none;
+}
+
+.croppie-container .cr-slider-wrap {
+    width: 75%;
+    margin: 15px auto;
+    text-align: center;
+}
+
+.croppie-result {
+    position: relative;
+    overflow: hidden;
+}
+
+.croppie-result img {
+    position: absolute;
+}
+
+.croppie-container .cr-image,
+.croppie-container .cr-overlay,
+.croppie-container .cr-viewport {
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+}
+
+/*************************************/
+/***** STYLING RANGE INPUT ***********/
+/*************************************/
+/*http://brennaobrien.com/blog/2014/05/style-input-type-range-in-every-browser.html */
+/*************************************/
+
+.cr-slider {
+    -webkit-appearance: none;
+    /*removes default webkit styles*/
+    /*border: 1px solid white; *//*fix for FF unable to apply focus style bug */
+    width: 300px;
+    /*required for proper track sizing in FF*/
+    max-width: 100%;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background-color: transparent;
+}
+
+.cr-slider::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 3px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 0;
+    border-radius: 3px;
+}
+
+.cr-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: #ddd;
+    margin-top: -6px;
+}
+
+.cr-slider:focus {
+    outline: none;
+}
+/*
+.cr-slider:focus::-webkit-slider-runnable-track {
+background: #ccc;
+}
+*/
+
+.cr-slider::-moz-range-track {
+    width: 100%;
+    height: 3px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 0;
+    border-radius: 3px;
+}
+
+.cr-slider::-moz-range-thumb {
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: #ddd;
+    margin-top: -6px;
+}
+
+/*hide the outline behind the border*/
+.cr-slider:-moz-focusring {
+    outline: 1px solid white;
+    outline-offset: -1px;
+}
+
+.cr-slider::-ms-track {
+    width: 100%;
+    height: 5px;
+    background: transparent;
+    /*remove bg colour from the track, we'll use ms-fill-lower and ms-fill-upper instead */
+    border-color: transparent;/*leave room for the larger thumb to overflow with a transparent border */
+    border-width: 6px 0;
+    color: transparent;/*remove default tick marks*/
+}
+.cr-slider::-ms-fill-lower {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+.cr-slider::-ms-fill-upper {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+.cr-slider::-ms-thumb {
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: #ddd;
+    margin-top:1px;
+}
+.cr-slider:focus::-ms-fill-lower {
+    background: rgba(0, 0, 0, 0.5);
+}
+.cr-slider:focus::-ms-fill-upper {
+    background: rgba(0, 0, 0, 0.5);
+}
+/*******************************************/
+
+/***********************************/
+/* Rotation Tools */
+/***********************************/
+.cr-rotate-controls {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    z-index: 1;
+}
+.cr-rotate-controls button {
+    border: 0;
+    background: none;
+}
+.cr-rotate-controls i:before {
+    display: inline-block;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 22px;
+}
+.cr-rotate-l i:before {
+    content: '↺';
+}
+.cr-rotate-r i:before {
+    content: '↻';
+}
+
+
+#sortable {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.sort_these {
+    margin-bottom:25px;
+    padding-left: 0px;
+}
+.admin-menu {
+    margin-top: 20px;
+}
+.admin-menu li {
+    list-style-type: none;
+}
+.ui-state-default {
+    margin: 0 3px 3px 3px;
+    padding: 0.4em;
+    padding-left: 1.5em;
+    font-size: 1.4em;
+    content: '';
+    max-width: 100%;
+}
+.ui-icon {
+    position: absolute;
+    margin-left: -1.3em;
+}
+
+.block{
+    border-radius: 20px;
+    border: 15px solid rgba(159, 125, 61, 0.7);
+    border-image-source: url("/images/border.png");
+    border-image-slice: 20 20;
+    border-image-repeat: round;
+    padding: 10px;
+    margin-bottom: 20px;
+    min-height: 150px;
+}
+.block.dark{
+    background-color: rgba(0, 0, 0, 0.65);
+    color: #dcbb60
+}
+
+.block.video-preview {
+    background-image: url("/images/placeholders/video-background.png");
+    background-repeat: no-repeat;
+    background-size: 200%;
+    background-position: center;
+    padding-bottom: 42%;
+    position: relative;
+}

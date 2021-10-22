@@ -1,0 +1,5 @@
+fungio_google_calendar:
+  google_calendar:
+    application_name: "Google Calendar"
+    credentials_path: "%kernel.root_dir%/.credentials/calendar.json"
+    client_secret_path: "%kernel.root_dir%/Resources/GoogleCalendarBundle/client_secret.json"

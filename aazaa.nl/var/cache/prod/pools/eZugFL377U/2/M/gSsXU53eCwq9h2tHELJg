@@ -1,0 +1,26 @@
+<?php return [PHP_INT_MAX, [
+    'slugs' => [
+        'path' => [
+            'fields' => [
+                'title',
+            ],
+            'slug' => 'path',
+            'style' => 'default',
+            'dateFormat' => 'Y-m-d-H:i',
+            'updatable' => true,
+            'unique' => true,
+            'unique_base' => null,
+            'separator' => '-',
+            'prefix' => '',
+            'suffix' => '',
+            'handlers' => [
+                'Gedmo\\Sluggable\\Handler\\RelativeSlugHandler' => [
+                    'relationField' => 'category',
+                    'relationSlugField' => 'alias',
+                    'separator' => '/',
+                ],
+            ],
+        ],
+    ],
+    'useObjectClass' => 'App\\Entity\\PageContent',
+]];

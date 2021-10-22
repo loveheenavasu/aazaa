@@ -1,0 +1,20 @@
+{% block subject %}
+    Lidmaatschap - Aazaa.org
+{% endblock %}
+{% block title %}
+    Lidmaatschap Aazaa.org
+{% endblock %}
+{% block content %}
+
+    Beste {% if user.firstname is not empty %} {{ user.firstname }} {{ user.lastname }}{% else %}{{ user.username }}{% endif %}<br>
+    <br>
+    Je betaling is geslaagd en je bent nu lid!<br>
+    Je hebt nu toegang tot alle video’s!<br>
+    En je kunt meer video’s als favoriet bewaren.<br>
+    Ik wens je veel plezier en veel inzicht!<br>
+    <br>
+    Met vriendelijke groet,<br>
+    Aazaa.org
+{% endblock %}
+
+{% extends 'Email/base.html.twig' %}

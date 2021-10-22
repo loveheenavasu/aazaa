@@ -1,0 +1,22 @@
+{% block subject %}
+    {{ subject }}
+{% endblock %}
+{% block title %}
+    {{ subject }}
+{% endblock %}
+{% block content %}
+    Beste {% if user.firstname is not empty %} {{ user.firstname }} {{ user.lastname }}{% else %}{{ user.username }}{% endif %}<br>
+    <br>
+    Je betaling is geslaagd!<br>
+    Je hebt een {{ userPayments.userWorkshop.workshop.type }} geboekt op {{ userPayments.userWorkshop.workshop.startDatetime | date('d-m-Y H:i') }} op {{ userPayments.userWorkshop.workshop.location.name }}.<br>
+    Je kunt deze terug vinden onder <a href="{{ absolute_url(path('account_workshop')) }}">“sessies/workshops”</a> in je lidmaatschapsectie.<br>
+    Zet ‘m in je agenda en tot dan!<br>
+    <br>
+    Bij een videosessie: Als je bent ingelogd zie je in je lidmaatschapsectie onder <a href="{{ absolute_url(path('account_workshop')) }}">“sessies/workshops”</a>  de geboekte videosessie staan.
+    Op de tijd van de sessie wordt deze actief en als je dan hier op klikt wordt er een videoverbinding tot stand gebracht. Je moet wel een computer of telefoon met microfoon en camera hebben en het programma hiertoe toegang verlenen.<br>
+    <br>
+    Met vriendelijke groet,<br>
+    Aazaa.org
+{% endblock %}
+
+{% extends 'Email/base.html.twig' %}

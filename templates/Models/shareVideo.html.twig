@@ -1,0 +1,35 @@
+{% if pageContent is defined and pageContent is not empty %}
+    <div class="modal fade" id="shareVideoModel" role="dialog">
+        <div class="modal-dialog model-background">
+            <form method="post" action="{{ path('account_share_video') }}">
+                <div class="modal-content block">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Met wie zou je deze video willen delen? </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token('share') }}">
+                            <input type="hidden" name="pageContentId" value="{{ pageContent.id }}">
+                            <label class="input col-xs-12">
+                                <div class="input-group col-xs-12">
+                                    <label>Naam ontvanger: *</label>
+                                    <input type="text" minlength="4" class="form-control input-aazaa col-xs-12" name="name" required="required" value="">
+                                </div>
+                            </label>
+                            <label class="input col-xs-12">
+                                <div class="input-group col-xs-12">
+                                    <label>Emailadres ontvanger: *</label>
+                                    <input type="email" class="form-control input-aazaa col-xs-12" name="email" required="required" value="">
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-aazaa">Deel Video</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endif %}

@@ -1,0 +1,24 @@
+{% block subject %}
+    Lidmaatschap - Aazaa Academie
+{% endblock %}
+{% block title %}
+    Je lidmaatschap van de Aazaa Academie
+{% endblock %}
+{% block content %}
+
+    Beste {% if user.firstname is not empty %} {{ user.firstname }} {{ user.lastname }}{% else %}{{ user.username }}{% endif %}<br>
+    <br>
+    Je betaling is geslaagd en je bent nu lid van de Aazaa Academie!<br>
+    Je hebt nu toegang tot alle video’s, meditaties & oefeningen!<br>
+    En je kunt meer video’s als favoriet bewaren.<br>
+	Bovendien krijg je voorrang bij het boeken van workshops & sessies!<br><br>
+	
+    Ik wens je veel plezier & veel inzicht!<br>
+    <br><br>
+	Hartelijke groet,<br>
+	Peter Aazaa <br><br>
+    Aazaa Academie<br>
+    www.aazaa.nl
+{% endblock %}
+
+{% extends 'Email/base.html.twig' %}

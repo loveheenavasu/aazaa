@@ -1,0 +1,17 @@
+{% block subject %}
+    Emailadres gewijzigd - Aazaa.org
+{% endblock %}
+{% block title %}
+    Uw Emailadres is gewijzigd op - aazaa.org
+{% endblock %}
+{% block content %}
+    Het emailadres is succesvol gewijzigd:<br>
+    <br>
+    Het emailadres is van {{ oldEmail }} naar {{ user.email }} gewijzigd<br>
+    <br>
+    <br>
+    Met vriendelijke groet,<br>
+    Aazaa.org
+{% endblock %}
+
+{% extends 'Email/base.html.twig' %}

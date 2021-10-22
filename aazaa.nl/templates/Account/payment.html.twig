@@ -1,0 +1,34 @@
+{#{% block accountContent %}#}
+    {#<div class="block dark">#}
+        {#<h2>Profiel</h2>#}
+        {#<div class="row">#}
+            {#{% if errormessage is defined and not empty %}#}
+                {#<div>{{ errormessage }}</div>#}
+            {#{% endif %}#}
+        {#</div>#}
+        {#<div class="row">#}
+            {#{% if app.user.favorites | length  < 1%}#}
+                {#Geen favorieten#}
+            {#{% else %}#}
+                {#{% for favorite in app.user.favorites %}#}
+                    {#<div class="col-xs-12 col-sm-6 col-md-4 panel panel-default">#}
+                        {#<div class="panel-heading">{{ favorite.pageContent.title }}</div>#}
+                        {#<div class="panel-body">#}
+                            {#<p>{{ favorite.video.descriptionShort }}</p>#}
+                        {#</div>#}
+                        {#<div class="panel-footer">#}
+                            {#<button type="button" class="btn btn-aazaa pull-right favoriteAction" data-favorite="{{ favorite.video.id }}" data-reload="true">Verwijderen</button>#}
+                            {#<a class="btn btn-aazaa pull-right" href="{{ path('video_detail', {'categoryslug': favorite.video.category.slug, 'videoslug':favorite.video.slug }) }}">Bekijken</a>#}
+                        {#</div>#}
+                    {#</div>#}
+                {#{% endfor %}#}
+            {#{% endif %}#}
+        {#</div>#}
+    {#</div>#}
+
+
+
+
+{#{% endblock %}#}
+
+{#{% extends 'Account/base.html.twig' %}#}

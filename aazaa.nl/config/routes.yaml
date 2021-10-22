@@ -1,0 +1,83 @@
+fos_js_routing:
+  resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
+fos_user:
+  resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+unsubscribe_mailing:
+  path:   /uitschrijven/{userMail}/{userToken}
+  defaults: { _controller: App\Controller\Account\DefaultController::unsubscribeMailing}
+
+user_validate_email:
+  path:     /activeren/{userId}/{tokenLogin}/{email}
+  defaults: { _controller: App\Controller\Account\SecurityController::activateAccount }
+
+account_reset_pass:
+  path:   /nieuw-wachtwoord-aanvragen
+  defaults: { _controller: App\Controller\Account\SecurityController::resetPassword }
+
+webhook:
+  resource: "routes/Webhook/routing.yml"
+  prefix:   /webhook/
+
+admin:
+  resource: "routes/Admin/routing.yml"
+  prefix:   /admin/
+
+account:
+  resource: "routes/Account/routing.yml"
+  prefix:   /account/
+
+ajax:
+  resource: "routes/ajax.yml"
+  prefix:   /ajax/
+
+payment_success:
+  path:     /betaling/
+  defaults: { _controller: App\Controller\PaymentController::payment }
+
+subscription_success:
+  path:     /lidmaatschap-status/{mollieUserId}
+  defaults: { _controller: App\Controller\PaymentController::subscription }
+
+privacy_statement:
+  path:     /algemene-voorwaarden-en-privacystatement
+  defaults: { _controller: App\Controller\DefaultController::privacystatement }
+
+workshops:
+  path:     /workshops/
+  defaults: { _controller: App\Controller\WorkshopController:indexWorkshop }
+
+cursussen:
+  path:     /cursussen/
+  defaults: { _controller: App\Controller\WorkshopController::indexCursus }
+
+sessions_calendar:
+  path:     /sessies/
+  defaults: { _controller: App\Controller\WorkshopController::calendarWeek, year: null, week: null }
+
+sessions_calendar_date:
+  path:     /sessies/{year}/{week}
+  defaults: { _controller: App\Controller\WorkshopController::calendarWeek, year: null, week: null }
+
+workshops_cursus_register:
+  path:     /workshops-en-cursussen/inschrijven/{workshop}
+  defaults: { _controller: App\Controller\WorkshopController::subscribe }
+
+workshops_cursus_detail:
+  path:     /workshops-en-cursussen/{slug}
+  defaults: { _controller: App\Controller\WorkshopController::detail }
+
+index:
+  path:     /
+  defaults: { _controller: App\Controller\DefaultController::index }
+
+
+page_loader:
+  path:     /{slug}
+  defaults:
+    _controller: App\Controller\DefaultController::pageCollector
+  requirements:
+    slug: ".+"
+  options:
+    expose: true

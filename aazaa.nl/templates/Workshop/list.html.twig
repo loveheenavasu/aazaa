@@ -1,0 +1,51 @@
+{% block metaTitle %}{{ pageContent.metaTitle }}{% endblock %}
+{% block description %}{{ pageContent.metaDescription }}{% endblock %}
+
+
+{% block content %}
+    <div class="container base">
+        <div class="block dark">
+            {% if workshops | length > 0 %}
+                {% for workshop in workshops %}
+                    <div class="cursus-container">
+                        <div class="row cursus-container-header">
+                            <div class="col-xs-6">
+                                {{ loop.index }}. {{ workshop.title }} <small>({{ workshop.type | capitalize }})</small>
+                            </div>
+                            <div class="col-xs-2 cursus-container-location-pre hidden-xs">
+                                op locatie:
+                            </div>
+                            <div class="col-xs-6 col-md-4 cursus-container-location" {% if workshop.location.color is not empty %}style="background-color: {{ workshop.location.color }}"{% endif %}>
+                                {{ workshop.location.name }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                {{ workshop.descriptionShort }}<br>
+                                Op {{ workshop.startDatetime | localizeddate('full', 'none') }} {{ workshop.startDatetime|date('H:i') }}u tot
+                                {% if workshop.startDatetime| date('Ymd') != workshop.endDatetime | date('Ymd') %}{{ workshop.endDatetime | localizeddate('full', 'none') }} {% endif %}{{ workshop.endDatetime | date('H:i') }}u.<br>
+                                Kosten: € {{ workshop.price |number_format(2, ',', '.') }} / € {{ (workshop.price * 0.75) | number_format(2, ',', '.') }} / € {{ (workshop.price * 0.5) | number_format(2, ',', '.') }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 cursus-container-button">
+                                <a class="btn btn-aazaa" href="{{ path('workshops_cursus_detail', {'slug': workshop.slug }) }}">Meer info</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                Momenteel geen Cursussen gepland
+                <hr>
+            {% endif %}
+            {{ pageContent.content | raw }}
+        </div>
+    </div>
+    <div class="container">
+        {{ render(controller(
+            'App\\Controller\\DefaultController::navigationMiddle'
+        )) }}
+    </div>
+{% endblock %}
+
+{% extends 'Base/base.html.twig' %}

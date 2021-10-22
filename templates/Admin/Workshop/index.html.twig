@@ -1,0 +1,106 @@
+{% block content %}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>Workshops / Sessies /h1>
+        </div>
+        <div class="col-xs-push-6 col-xs-6">
+            <a class="pull-right btn btn-danger" href="{{ path('admin_workshop_edit') }}"><i class="fa fa-plus"></i> Nieuw</a>
+        </div>
+
+        <div class="col-xs-12">
+            <table class="table table-responsive table-striped">
+                <tr>
+                    <th{% if pagination.isSorted('w.id') %} class="sorted"{% endif %} >{{ knp_pagination_sortable(pagination, 'Id', 'w.id') }}</th>
+                    <th{% if pagination.isSorted('w.title') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Title', 'w.title') }}</th>
+                    <th{% if pagination.isSorted('w.type') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Type', 'w.type') }}</th>
+                    <th{% if pagination.isSorted('w.startDatetime') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'StartDatum', 'w.startDatetime') }}</th>
+                    <th{% if pagination.isSorted('w.endDatetime') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'EindDatum', 'w.endDatetime') }}</th>
+                    <th{% if pagination.isSorted('w.created') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Gemaakt op', 'w.created') }}</th>
+                    <th{% if pagination.isSorted('w.updated') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Bewerkt op', 'w.updated') }}</th>
+                    <th{% if pagination.isSorted('w.active') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Online', 'w.active') }}</th>
+                    <th{% if pagination.isSorted('w.seats') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Plaatsen', 'w.seats') }}</th>
+                    <th>#</th>
+                </tr>
+
+                {% for workshop in pagination %}
+                    <tr>
+                        <td>{{ workshop.id }}</td>
+                        <td>{{ workshop.title }}</td>
+                        <td>{{ workshop.type }}</td>
+                        <td>{{ workshop.startDatetime | date('d-m-Y H:i:s') }}</td>
+                        <td>{{ workshop.endDatetime | date('d-m-Y H:i:s') }}</td>
+                        <td>{{ workshop.created | date('d-m-Y H:i:s') }}</td>
+                        <td>{{ workshop.updated | date('d-m-Y H:i:s') }}</td>
+                        <td>{% if workshop.active %}Ja{% else %}Nee{% endif %}</td>
+                        <td>{{ workshop.seatsAvailable }} / {{ workshop.seats }}</td>
+                        <td>
+                            <a class="btn btn-warning" href="{{ path('admin_workshop_edit', { 'workshopId': workshop.id }) }}"><i class="far fa-edit"></i> Bewerken</a>
+                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#clone" onclick="copy('{{ workshop.id }}')" ><i class="far fa-clone"></i> kopiëren</button>
+                            <a onclick="return confirm('Weet je het zeker, dat deze verwijderd mag worden ??')" class="btn btn-danger" href="{{ path('admin_workshop_remove', { 'id': workshop.id }) }}"><i class="far fa-trash-alt"></i> Verwijderen </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+            <div class="navigation">
+                {{ knp_pagination_render(pagination) }}
+            </div>
+        </div>
+
+        <div id="clone" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <form action="{{ path('admin_workshop_clone') }}" method="post">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Kopieren</h4>
+                        </div>
+                        <div class="modal-body" style="min-height: 350px;">
+                            <div class="col-md-12">
+                                <div class="form-group col-xs-12">
+                                    <input type="hidden" id="workshopId" name="workshopId" value="">
+                                    <input type="hidden" id="dates" name="dates" value="">
+                                    <label for="dates">Selecteer startdatums</label>
+                                    <div id="datepicker"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
+                            <button type="submit" class="btn btn-success">Kopiëren </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('css/jquery-ui.multidatespicker.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}">
+{% endblock %}
+
+{% block javascript_footer %}
+    <script src="{{ asset('js/jquery-datepicker.js') }}"></script>
+    <script src="{{ asset('js/jquery-datepicker-nl.js') }}"></script>
+    <script src="{{ asset('js/jquery-ui.multidatespicker.js') }}"></script>
+    <script>
+        function copy(id){
+            $('#dates').val('');
+            $('#workshopId').val(id);
+
+            let datepicker = $('#datepicker');
+            datepicker.multiDatesPicker({
+                altField: '#dates',
+            });
+
+        }
+    </script>
+{% endblock %}
+
+{% extends 'Admin/base.html.twig' %}
+

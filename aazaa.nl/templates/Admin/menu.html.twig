@@ -1,0 +1,98 @@
+<div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    <img style="max-height: 50px; margin:auto; padding:0 10px 0 10px; margin-bottom:20px;" src="{{ asset( 'images/logo/logo-46px-50px.png' ) }}">
+</div>
+<div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+
+    <ul class="nav navbar-nav" style="width: 100%;">
+        <li {% if app.request.get('_route') == 'admin_index' %} class="active" {% endif %}>
+            <a href="{{ path('admin_index') }}">Dashboard
+                <span class="pull-right hidden-xs showopacity fas fa-home" style="font-size:16px;"  aria-hidden="true"></span>
+            </a>
+        </li>
+
+        <li class="dropdown {% if 'admin_page_' in app.request.get('_route') %}open{% endif %}">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Content
+                <span style="font-size:16px;" class="pull-right hidden-xs fas fa-file-alt"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+                <li {% if app.request.get('_route') in ['admin_page_category','admin_page_category_edit'] %} class="active" {% endif %}>
+                    <a href="{{ path('admin_page_category') }}">Categorieën / Menu
+                        <span class="pull-right hidden-xs fas fa-bars" style="font-size:16px;"  aria-hidden="true"></span>
+                    </a>
+                </li>
+                <li {% if app.request.get('_route') in ['admin_page_overview','admin_page_edit'] %} class="active" {% endif %}>
+                    <a href="{{ path('admin_page_overview') }}">Pagina's
+                        <span class="pull-right hidden-xs fab fa-vimeo" style="font-size:16px;"  aria-hidden="true"></span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li {% if app.request.get('_route') == 'admin_collector_index' %} class="active" {% endif %}>
+            <a href="{{ path('admin_collector_index') }}">Blokken / Instellingen
+                <span class="pull-right hidden-xs showopacity fas fa-cogs" style="font-size:16px;"  aria-hidden="true"></span>
+            </a>
+        </li>
+
+        <li {% if app.request.get('_route') == 'admin_background_index' %} class="active" {% endif %}>
+            <a href="{{ path('admin_background_index') }}">Verander de achtergrond
+                <span class="pull-right hidden-xs showopacity fas fa-cogs" style="font-size:16px;"  aria-hidden="true"></span>
+            </a>
+        </li>
+
+        <li class="dropdown {% if 'admin_workshop_' in app.request.get('_route') %}open{% endif %}">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Workshop / Sessies / Cursussen
+                <span style="font-size:16px;" class="pull-right hidden-xs fas fa-users"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+                <li {% if app.request.get('_route') == 'admin_workshop_index' %} class="active" {% endif %}>
+                    <a href="{{ path('admin_workshop_index') }}">Workshops / Sessies
+                        <span class="pull-right hidden-xs far fa-calendar-alt" style="font-size:16px;" aria-hidden="true"></span>
+                    </a>
+                </li>
+                <li {% if app.request.get('_route') == 'admin_workshop_location_index' %} class="active" {% endif %}>
+                    <a href="{{ path('admin_workshop_location_index') }}">Locaties
+                        <span class="pull-right hidden-xs far fa-building" style="font-size:16px;" aria-hidden="true"></span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li {% if 'video_chat' in app.request.get('_route') %} class="active" {% endif %}>
+            <a href="{{ path('video_chat_index') }}">Video bellen
+                <span class="pull-right hidden-xs showopacity fas fa-video" style="font-size:16px;"  aria-hidden="true"></span>
+            </a>
+        </li>
+
+        <li class="dropdown {% if 'admin_user_' in app.request.get('_route') %}open{% endif %}">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gebruikers
+                <span style="font-size:16px;" class="pull-right hidden-xs fas fa-users"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+                <li {% if app.request.get('_route') == 'admin_user_overview' %} class="active" {% endif %}>
+                    <a href="{{ path('admin_user_overview') }}">Overzicht
+                        <span class="pull-right hidden-xs fas fa-user" style="font-size:16px;"  aria-hidden="true"></span>
+                    </a>
+                </li>
+                <li {% if app.request.get('_route') == 'admin_user_mailing' %} class="active" {% endif %}>
+                    <a href="{{ path('admin_user_mailing') }}">Mailing
+                        <span class="pull-right hidden-xs fas fa-envelope" style="font-size:16px;"  aria-hidden="true"></span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="{{ path('admin_logout') }}">Uitloggen
+                <span class="pull-right hidden-xs showopacity fas fa-sign-out-alt" style="font-size:16px;"  aria-hidden="true"></span>
+            </a>
+        </li>
+    </ul>
+
+</div>

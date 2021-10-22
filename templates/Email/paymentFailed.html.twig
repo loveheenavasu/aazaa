@@ -1,0 +1,21 @@
+{% block subject %}
+    {{ subject }}
+{% endblock %}
+{% block title %}
+    {{ subject }}
+{% endblock %}
+{% block content %}
+    Beste {% if user.firstname is not empty %} {{ user.firstname }} {{ user.lastname }}{% else %}{{ user.username }}{% endif %}<br>
+    <br>
+    Hé, dat is jammer, je betaling is <strong>niet</strong> geslaagd!
+    Je hebt dus <strong>geen</strong> plek geboekt<br>
+    <br>
+    Probeer het nog een keer.<br>
+    <br>
+    Mocht het weer niet lukken, dan kun je een email sturen naar <a href="mailto:info@aazaa.nl">info@aazaa.nl</a> en dan lossen we het voor je op.
+    <br><br>
+    Aazaa Academie<br>
+    www.aazaa.nl
+{% endblock %}
+
+{% extends 'Email/base.html.twig' %}

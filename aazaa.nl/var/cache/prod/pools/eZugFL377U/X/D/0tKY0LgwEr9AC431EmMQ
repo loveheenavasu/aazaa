@@ -1,0 +1,118 @@
+<?php
+
+namespace Symfony\Component\VarExporter\Internal;
+
+return $getExpiry ? PHP_INT_MAX : Hydrator::hydrate(
+    $o = [
+        clone (($p = &Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
+        clone ($p['Doctrine\\ORM\\Id\\IdentityGenerator'] ?? Registry::p('Doctrine\\ORM\\Id\\IdentityGenerator')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'name' => [
+                'App\\Entity\\Collector',
+            ],
+            'namespace' => [
+                'App\\Entity',
+            ],
+            'rootEntityName' => [
+                'App\\Entity\\Collector',
+            ],
+            'customRepositoryClassName' => [
+                'App\\Repository\\CollectorRepository',
+            ],
+            'identifier' => [
+                [
+                    'id',
+                ],
+            ],
+            'generatorType' => [
+                4,
+            ],
+            'fieldMappings' => [
+                [
+                    'id' => [
+                        'fieldName' => 'id',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'id' => true,
+                        'columnName' => 'id',
+                    ],
+                    'key' => [
+                        'fieldName' => 'key',
+                        'type' => 'string',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => 0,
+                        'columnName' => 'col_key',
+                    ],
+                    'value' => [
+                        'fieldName' => 'value',
+                        'type' => 'text',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => 0,
+                        'columnName' => 'col_value',
+                    ],
+                    'valueInt' => [
+                        'fieldName' => 'valueInt',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => 0,
+                        'columnName' => 'col_value_int',
+                    ],
+                ],
+            ],
+            'fieldNames' => [
+                [
+                    'id' => 'id',
+                    'col_key' => 'key',
+                    'col_value' => 'value',
+                    'col_value_int' => 'valueInt',
+                ],
+            ],
+            'columnNames' => [
+                [
+                    'id' => 'id',
+                    'key' => 'col_key',
+                    'value' => 'col_value',
+                    'valueInt' => 'col_value_int',
+                ],
+            ],
+            'table' => [
+                [
+                    'name' => 'collector',
+                    'indexes' => [
+                        'key_idx' => [
+                            'columns' => [
+                                'col_key',
+                            ],
+                        ],
+                        'value_int_idx' => [
+                            'columns' => [
+                                'col_value_int',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+            'idGenerator' => [
+                $o[1],
+            ],
+        ],
+    ],
+    $o[0],
+    []
+);

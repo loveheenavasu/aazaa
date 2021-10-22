@@ -1,0 +1,75 @@
+{% block content %}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>Pagina's</h1>
+        </div>
+
+        <div class="col-xs-6">
+            <h4>Filteren</h4>
+            <form method="get" class="form-inline">
+                <div class="form-group">
+                    <label for="cat">Categorie:</label>
+                    <select title="cat" class="form-control" name="categorie">
+                        <option value="null">Alles</option>
+                        {% for op in categorylist %}
+                            <option value="{{ op.name }}" {% if app.request.get('categorie') ==  op.name %} selected{% endif %}>{{ op.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div><br>
+                {#{% set amountList = [10, 25, 50, 75, 100, 125, 150, 175, 200, 250, 300] %}#}
+                {#<div class="form-group">#}
+                    {#<label for="cat">Items per pagina:</label>#}
+                    {#<select title="cat" class="form-control" name="aantal">#}
+                        {#{% for amount in amountList %}#}
+                            {#<option value="{{ amount }}" {% if app.request.get('aantal') == amount %} selected {% endif %}>{{ amount }}</option>#}
+                        {#{% endfor %}#}
+                    {#</select>#}
+                {#</div>#}
+                <button type="submit" class="btn btn-default">Filteren</button>
+                <hr>
+            </form>
+        </div>
+        <div class="col-xs-6">
+            <a class="pull-right btn btn-success" href="{{ path('admin_page_edit') }}"><i class="fa fa-plus"></i> Nieuwe Template pagina</a>
+            {#<a class="pull-right btn btn-danger" href="{{ path('admin_page_edit_content') }}"><i class="fa fa-plus"></i> Nieuwe Content pagina</a> // staat uit. toekomst idee?#}
+        </div>
+
+
+        <div class="col-xs-12">
+            <table class="table table-responsive table-striped">
+                <tr>
+                    <th{% if pagination.isSorted('p.id') %} class="sorted"{% endif %} >{{ knp_pagination_sortable(pagination, 'Id', 'p.id') }}</th>
+                    <th{% if pagination.isSorted('p.title') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Title', 'p.title') }}</th>
+                    <th{% if pagination.isSorted('pc.name') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Categorie', 'pc.name') }}</th>
+                    <th{% if pagination.isSorted('p.created') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Gemaakt op', 'p.created') }}</th>
+                    <th{% if pagination.isSorted('p.updated') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Bewerkt op', 'p.updated') }}</th>
+                    <th{% if pagination.isSorted('p.active') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Online', 'p.active') }}</th>
+                    <th{% if pagination.isSorted('p.paid') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Betaald', 'p.paid') }}</th>
+                    <th>#</th>
+                </tr>
+
+                {% for page in pagination %}
+                    <tr>
+                        <td>{{ page.id }}</td>
+                        <td>{{ page.title }}</td>
+                        <td>{% if page.category %}{{ page.category.name }}{% endif %}</td>
+                        <td>{{ page.created | date('d-m-Y H:i:s') }}</td>
+                        <td>{{ page.updated | date('d-m-Y H:i:s') }}</td>
+                        <td>{% if page.active %}Ja{% else %}Nee{% endif %}</td>
+                        <td>{% if page.paid %}Ja{% else %}Nee{% endif %}</td>
+                        <td><a class="btn btn-warning" href="{% if page.template == 'content' %}{{ path('admin_page_edit_content', { 'pageContentId': page.id }) }}{% else %}{{ path('admin_page_edit', { 'pageContentId': page.id }) }}{% endif %}"><i class="far fa-edit"></i> Bewerken</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+            <div class="navigation">
+                {{ knp_pagination_render(pagination) }}
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+{% extends 'Admin/base.html.twig' %}
+

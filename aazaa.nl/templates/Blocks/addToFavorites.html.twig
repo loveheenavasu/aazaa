@@ -1,0 +1,29 @@
+<div class="col-xs-12 text-center">
+    {% if app.user %}
+        {% set favactive = false %}
+        {% for fav in app.user.favorites %}
+            {% if fav.pageContent.id == pageContent.id %}
+                {% set favactive = true %}
+            {% endif %}
+        {% endfor %}
+        <span class="favoriteAction {% if favactive %}fav-active{% endif %}" data-favorite="{{ pageContent.id }}" data-reload="false">
+            {% if favactive %} <i class="fas fa-star"></i><span>Favoriet!</span>{% else %}<i class="far fa-star"></i><span>Favoriet?</span>{% endif %}</span>
+        </span>
+    {% else %}
+        <a href="{{ path('account_login') }}" class="pull-right favoriteAction" data-reload="false">
+            <i class="far fa-star"></i> <span>Favoriet?</span>
+        </a>
+    {% endif %}
+    <a class="pull-right mr-5" href="mailto:info@aazaa.org">
+        <img src="{{ asset('images/email.png') }}" class="img-responsive" style="width: 30px; margin-left: auto; margin-right: auto;display: block;" alt="Mail ons">
+    </a>
+    <a class="pull-right mr-5" target="_blank" href="https://www.facebook.com/peter.aazaa">
+        <img src="{{ asset('images/facebook.png') }}" class="img-responsive" style="width: 30px; margin-left: auto; margin-right: auto;display: block;" alt="Aazaa op Facebook">
+    </a>
+    <a class="pull-right mr-5" target="_blank" href="https://www.instagram.com/aazaaacademy/">
+        <img src="{{ asset('images/instagram.png') }}" class="img-responsive" style="width: 30px; margin-left: auto; margin-right: auto;display: block;" alt="Aazaa op Instagram">
+    </a>
+    <a class="pull-right mr-5" target="_blank" href="https://www.pinterest.com/peteraazaa/">
+        <img src="{{ asset('images/pinterest.png') }}" class="img-responsive" style="width: 30px; margin-left: auto; margin-right: auto;display: block;" alt="Aazaa op pinterest">
+    </a>
+</div>

@@ -1,0 +1,108 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: 'nl'
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: false      # Automatically injects dependencies in your services.
+        autoconfigure: false # Automatically registers your services as commands, event subscribers, etc.
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/*'
+        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+
+    # controllers are imported separately to make sure services can be injected
+    # as action arguments even if you don't extend any base controller class
+    App\Controller\:
+        resource: '../src/Controller'
+        tags: ['controller.service_arguments']
+
+    git.handler:
+        class: App\Service\GitHandler
+        public: true
+        arguments:
+            $branch:          '%env(GIT_BRANCH)%'
+            $projectPath:     '%env(APP_SECRET)%'
+            $secret:          '%env(GIT_GITGUB_SECRET)%'
+            $doctrineUpdate:  '%env(GIT_DOCTRINE_UPDATE)%'
+
+    user_manager_service:
+        class:        App\Service\UserManagerService
+        public: true
+        arguments:
+            $userManager : "@fos_user.user_manager"
+            $container: "@service_container"
+            $encoderFactory: "@security.encoder_factory.generic"
+
+    mail_helper:
+        class:    App\Service\MailHelper
+        public: true
+        arguments:
+            $noReply: "%env(MAILER_NO_REPLY)%"
+            $mailer: "@mailgun.swift_transport.transport"
+            $twig: "@twig"
+            $container: "@service_container"
+            $userManagerService: "@user_manager_service"
+            $em: "@doctrine.orm.default_entity_manager"
+
+    open_tok:
+        class:    App\Service\OpenTokHelper
+        public: true
+        arguments:
+            $apiKey: "%env(OPENTOK_KEY)%"
+            $apiSecret: "%env(OPENTOK_SECRET)%"
+
+    page_content_helper:
+        class:    App\Service\PageContentHelper
+        public: true
+        arguments:
+            $container: "@service_container"
+            $em: "@doctrine.orm.entity_manager"
+            $urlGenerator: "@router"
+
+    user_payment:
+        class:    App\Service\UserPaymentService
+        public: true
+        arguments:
+            $container: "@service_container"
+            $em: "@doctrine.orm.entity_manager"
+            $router: "@router"
+
+
+    app.mail_embed_images.twig.extension:
+        class: App\Twig\mailEmbedImages
+        tags:
+            - { name: twig.extension }
+
+    app.json_decode.twig.extension:
+        class: App\Twig\jsonDecode
+        tags:
+            - { name: twig.extension }
+
+    app.version_controle.twig.extension:
+        class: App\Twig\versionControl
+        arguments:
+            $container: "@service_container"
+        tags:
+            - { name: twig.extension }
+
+    app.json_vimeo_thumbnail.twig.extension:
+        class: App\Twig\vimeoThumbnail
+        tags:
+            - { name: twig.extension }
+
+    mobile_detect.mobile_detector:
+        class: SunCat\MobileDetectBundle\DeviceDetector\MobileDetector
+        public: true
+
+    twig.extension.intl:
+        class: Twig_Extensions_Extension_Intl
+        tags:
+            - { name: twig.extension }

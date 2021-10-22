@@ -1,0 +1,19 @@
+{% block metaTitle %}{{ pageContent.metaTitle }}{% endblock %}
+{% block description %}{{ pageContent.metaDescription }}{% endblock %}
+
+
+{% block content %}
+    <div class="container base">
+        <div class="block dark">
+            {{ pageContent.content | raw }}
+        </div>
+    </div>
+
+    <div class="container" style="margin-top: 30px;">
+        {{ render(controller(
+            'App\\Controller\\DefaultController::navigationMiddle'
+        )) }}
+    </div>
+{% endblock %}
+
+{% extends 'Base/base.html.twig' %}

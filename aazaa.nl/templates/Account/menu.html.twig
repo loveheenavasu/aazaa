@@ -1,0 +1,39 @@
+<div class="dark col-xs-12">
+    <ul class="nav account-submenu" style="width: 100%;">
+        <li class="{% if app.request.get('_route') == 'account_index' %}active{% endif %} col-xs-12" >
+            <a href="{{ path('account_index') }}">Profiel
+                <span class="pull-left fas fa-user" style="margin-right: 5px;"  aria-hidden="true"></span>
+            </a>
+        </li>
+        <li class="{% if app.request.get('_route') == 'account_favorites' %}active{% endif %} col-xs-12" >
+            <a href="{{ path('account_favorites') }}">Favorieten
+                <span class="pull-left fas fa-star" style="margin-right: 5px;"  aria-hidden="true"></span>
+            </a>
+        </li>
+
+        <li class="{% if app.request.get('_route') == 'account_viewed_videos' %}active{% endif %} col-xs-12" >
+            <a href="{{ path('account_viewed_videos') }}">Bekeken video's
+                <span class="pull-left fas fa-video" style="margin-right: 5px;"  aria-hidden="true"></span>
+            </a>
+        </li>
+
+        <li class="{% if app.request.get('_route') == 'account_workshop' %}active{% endif %} col-xs-12" >
+            <a href="{{ path('account_workshop') }}">Workshop / Sessies
+                <span class="pull-left fas fa-list-ul" style="margin-right: 5px;"  aria-hidden="true"></span>
+            </a>
+        </li>
+
+        <li class="{% if app.request.get('_route') == 'account_subscription' %}active{% endif %} col-xs-12" >
+            <a href="{{ path('account_subscription') }}">Lidmaatschap
+                <span class="pull-left fas fa-shopping-cart" style="margin-right: 5px;"  aria-hidden="true"></span>
+            </a>
+        </li>
+
+        <li class="{% if app.request.get('_route') == 'account_logout' %}active{% endif %} col-xs-12" >
+            <a href="{{ path('account_logout') }}">Uitloggen
+                <span class="pull-left fas fa-sign-out-alt" style="margin-right: 5px;"  aria-hidden="true"></span>
+            </a>
+        </li>
+
+    </ul>
+</div>

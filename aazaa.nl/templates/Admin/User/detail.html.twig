@@ -1,0 +1,158 @@
+{% block content %}
+    {% if user is defined %}
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>{{ user.firstname }} {{ user.lastname }}</h2>
+                <a class="btn btn-warning pull-right" href="{{ path('admin_user_overview') }}">Terug</a>
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#profile">Profiel</a></li>
+                    <li><a data-toggle="tab" href="#favorites">Favorieten</a></li>
+                    <li><a data-toggle="tab" href="#videos">Bekeken video's</a></li>
+                    <li><a data-toggle="tab" href="#workshops">Workshop / sessies</a></li>
+                    <li><a data-toggle="tab" href="#email">Emails</a></li>
+                    <li><a data-toggle="tab" href="#subscription">Lidmaatschap</a></li>
+                </ul>
+
+                <div class="tab-content">
+
+                    <div id="profile" class="tab-pane fade in active">
+                        <h3>Profiel</h3>
+                        <table class="table table-responsive table-striped">
+                            <tr>
+                                <td>Id</td>
+                                <td>{{ user.id }}</td>
+                            </tr>
+                            <tr>
+                                <td>Geslacht</td>
+                                <td>{% if user.gender %}{% if user.gender == 'f' %}Vrouw{% elseif user.gender == 'm' %}Man{% endif %}{% endif %}</td>
+                            </tr>
+                            <tr>
+                                <td>Voornaam</td>
+                                <td>{{ user.firstname }}</td>
+                            </tr>
+                            <tr>
+                                <td>Achternaam</td>
+                                <td>{{ user.lastname }}</td>
+                            </tr>
+                            <tr>
+                                <td>Aangemaakt op</td>
+                                <td>{{ user.created | date('d-m-Y H:i:s') }}</td>
+                            </tr>
+                            <tr>
+                                <td>Laatste login</td>
+                                <td>{{ user.lastLogin | date('d-m-Y H:i:s') }}</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div id="favorites" class="tab-pane fade">
+                        <h3>Favorieten</h3>
+                        <table class="table table-responsive table-striped">
+                            <tr>
+                               <th>Naam</th>
+                               <th>Vanaf</th>
+                            </tr>
+                            {% for favorites in user.favorites %}
+                                <tr>
+                                    <td>{{ favorites.pageContent.title }}</td>
+                                    <td>{{ favorites.created | date('d-m-Y H:i:s') }}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+
+                    <div id="videos" class="tab-pane fade">
+                        <h3>Bekeken video's</h3>
+                        <table class="table table-responsive table-striped">
+                            <tr>
+                                <th>Naam</th>
+                                <th>Aantal keer bekeken</th>
+                                <th>Eerste keer bekeken</th>
+                                <th>Laatste keer bekeken</th>
+                            </tr>
+                            {% for watchLog in user.watchLog %}
+                                <tr>
+                                    <td>{{ watchLog.pageContent.title }}</td>
+                                    <td>{{ watchLog.views }}</td>
+                                    <td>{{ watchLog.created | date('d-m-Y H:i:s') }}</td>
+                                    <td>{{ watchLog.updated | date('d-m-Y H:i:s') }}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+
+                    <div id="workshops" class="tab-pane fade">
+                        <h3>Workshops / Sessies</h3>
+                        <table class="table table-responsive table-striped">
+                            <tr>
+                                <th>Naam</th>
+                                <th>van - tot Datum</th>
+                                <th>Naam</th>
+                                <th>Betaald</th>
+                                <th>Aangemeld</th>
+                                <th>Laatste Update</th>
+                            </tr>
+                            {% for workshops in user.workshops %}
+                                <tr>
+                                    <td>{{ workshops.workshop.title }}</td>
+                                    <td>{{ workshops.workshop.startDatetime | date('d-m-Y H:i') }} - {{ workshops.workshop.endDatetime | date('d-m-Y H:i') }}</td>
+                                    <td>{% if workshops.paid %}Ja{% else %}Nee{% endif %}</td>
+                                    <td>{{ workshops.created | date('d-m-Y H:i') }}</td>
+                                    <td>{{ workshops.updated | date('d-m-Y H:i') }}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+
+                    <div id="email" class="tab-pane fade">
+                        <h3>Email</h3>
+                        {% if user.messages %}
+                            <table class="table table-responsive table-striped">
+                                <tr>
+                                    <th>Verzonden</th>
+                                    <th>Onderwerp</th>
+                                    <th>Log</th>
+                                </tr>
+                                {% for message in user.messages %}
+                                    <tr>
+                                        <td>{{ message.created | date('d-m-Y H:i') }}</td>
+                                        <td>{{ message.subject }}</td>
+                                        <td>
+                                            {% for track in message.trackings %}
+                                                {{ track.datetime | date('d-m-Y H:i') }} - {{ track.type }} {% if track.url %} - {{ track.url }}{% endif %} {% if track.ipadress %} - {{ track.ipadress }}{% endif %}<br>
+                                            {% endfor %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        {% else %}
+                            Nog geen mails verzonden vanuit aazaa.org
+                        {% endif %}
+                    </div>
+
+                    <div id="subscription" class="tab-pane fade">
+                        <h3>Lidmaatschap</h3>
+                        {% if user.subscriptionActiveTillDate %}
+                            {% if user.subscriptionActiveTillDate |date('Ymd') > "NOW"|date('Ymd')  %}
+                                Lidmaatschap is geldig tot {{ user.subscriptionActiveTillDate | date('d-m-Y H:i') }}.<br>
+                                {% if user.subscriptionActive %}
+                                    Lidmaatschap wordt automatisch op deze datum verlengt voor 1 maand.<br>
+                                {% else %}
+                                    Lidmaatschap wordt niet automatisch meer verlengd. <br>Na {{ user.subscriptionActiveTillDate | date('d-m-Y H:i') }} wordt het account omgezet, naar de gratis versie.
+                                {% endif %}
+                            {% else %}
+                                Het lidmaatschap is verlopen en is niet automatisch kunnen verlengen
+                            {% endif %}
+                        {% else %}
+                            Nog geen lidmaatschap afgenomen.
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% endif %}
+
+{% endblock %}
+{% extends 'Admin/base.html.twig' %}
+

@@ -1,0 +1,33 @@
+<div class="row" id="templatesharebutton">
+    {% for menuItem in menuItems %}
+        {% if menuItem.viewPosition == 'Pagina_menu' and menuItem.image %}
+            {% if menuItem.alias != 'muziek' %}
+                {% if menuItem.alias == 'shareVideoModel' %}
+                    <div class="col-xs-12 col-sm-6 col-md-4" style="margin-bottom: 15px">
+                        {% if app.user %}
+                            {% if pageContent is defined and pageContent.vimeoId is defined and pageContent.vimeoId is not empty %}
+                                <div style="cursor: pointer" data-toggle="modal" data-target="#shareVideoModel">
+                                    <img src="{{ menuItem.image }}" class="img-responsive" alt="{{ menuItem.name }}">
+                                </div>
+                            {% else %}
+                                <div style="cursor: pointer" data-toggle="modal" data-target="#sharePageModel">
+                                    <img src="{{ menuItem.image }}" class="img-responsive" alt="{{ menuItem.name }}">
+                                </div>
+                            {% endif %}
+                        {% else %}
+                            <a href="{{ path('account_index') }}">
+                                <img src="{{ menuItem.image }}" class="img-responsive" alt="{{ menuItem.name }}">
+                            </a>
+                        {% endif %}
+                    </div>
+                {% else %}
+                    <div class="col-xs-12 col-sm-6 col-md-4" style="margin-bottom: 15px">
+                        <a href="{{ path('page_loader', {'slug': menuItem.alias}) }}">
+                            <img src="{{ menuItem.image }}" class="img-responsive" alt="{{ menuItem.name }}">
+                        </a>
+                    </div>
+                {% endif %}
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+</div>

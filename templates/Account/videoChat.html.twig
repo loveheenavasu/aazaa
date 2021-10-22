@@ -1,0 +1,54 @@
+{%  block stylesheets %}
+    <link href="{{ asset('css/opentok.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block accountContent %}
+    <div class="block dark col-xs-12">
+        <h2>Workshops / Sessies</h2>
+
+        {% if errormessage is defined and not empty %}
+            <div class="row">
+                <div>{{ errormessage }}</div>
+            </div>
+        {% endif %}
+
+        <div class="col-xs-12">
+            <div class="block dark col-xs-12 form-inline" style="min-height: 100px;">
+                <div class="form-group col-xs-4">
+                    <label for="audio-source-select">Audio:</label>
+                    <select id="audio-source-select" class="form-control input-aazaa"></select>
+                </div>
+                <div class="form-group col-xs-4">
+                    <label for="video-source-select">Video:</label>
+                    <select id="video-source-select" class="form-control input-aazaa"></select>
+                </div>
+                <div class="col-xs-4">
+                    <button id="publish-btn" class="btn btn-aazaa" type="button">Start video sessie</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 video-embed-container embed-responsive embed-responsive-4by3">
+            <div class="embed-responsive-item" id="subscribers"></div>
+            <div id="publisher"></div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block javascript_footer %}
+    <script src="https://static.opentok.com/v2/js/opentok.min.js"></script>
+    {% if workshop.videoChatSessionId is not empty and token is not empty %}
+        <script type="text/javascript">
+            var apiKey = '{{ apiKey }}';
+            var sessionId = '{{ workshop.videoChatSessionId }}';
+            var token = '{{ token }}';
+            var session = OT.initSession(apiKey, sessionId);
+        </script>
+        <script src="{{ asset('js/opentok/opentok-option.js')  }}"></script>
+
+
+    {% endif %}
+{% endblock %}
+
+{% extends 'Account/base.html.twig' %}

@@ -1,0 +1,6 @@
+<?php return [PHP_INT_MAX, [
+    'create' => [
+        'created',
+    ],
+    'useObjectClass' => 'App\\Entity\\User',
+]];

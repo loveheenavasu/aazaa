@@ -1,0 +1,274 @@
+/*
+
+	# Company: Aazaa Academy
+
+	# CSS Author: Peter
+
+	# File: form.css
+
+*/
+
+/* 
+
+	** Global components
+
+*/
+
+fieldset
+
+{
+
+	border: 0;
+
+}
+
+fieldset legend
+
+{
+
+	display: none;
+
+}
+
+
+
+fieldset div
+
+{
+
+	padding: 4px 0 2px;
+
+}
+
+fieldset label
+
+{
+
+	display: block;
+
+	float: left;
+
+	width: 25%;
+
+	padding-top: 3px;
+
+	padding-right: 1%;
+
+	
+
+	font-weight: bold;
+
+	cursor: pointer;
+
+}
+
+
+
+fieldset input.txt,
+
+fieldset textarea.txt,
+
+fieldset select.ddl
+
+{
+
+	width: 46%;
+
+	padding: 2px 5px;
+
+}
+
+fieldset textarea
+
+{
+
+	font-size: 1em;
+
+	font-family: Verdana, Sans-Serif;
+
+}
+
+fieldset input.btn
+
+{
+
+	padding: 1px 5px;
+
+	
+
+	background-color: #9d1c20;
+
+	border: 1px solid #9d1c20;
+
+	
+
+	color: #fff;	
+
+	font-size: .9em;
+
+	font-weight: bold;
+
+	cursor: pointer;
+
+}
+
+
+
+fieldset div.full label
+
+{
+
+	float: none;
+
+	width: auto;
+
+}
+
+fieldset div.full input.txt
+
+{
+
+	width: 95%;
+
+}
+
+
+
+fieldset div.button-right
+
+{
+
+	padding: 0 3% 0 0;
+
+	text-align: right;
+
+}
+
+fieldset div.button-right input
+
+{
+
+	margin: 3px 0 0;
+
+}
+
+:root fieldset div.button-right input
+
+{
+
+	margin: 8px 0 11px;
+
+}
+
+
+
+fieldset div.buttons,
+
+fieldset div.checklist
+
+{
+
+	padding-left: 26%;
+
+}
+
+fieldset div.checklist label
+
+{
+
+	float: none;
+
+	width: auto;
+
+}
+
+
+
+fieldset ul.checklist
+
+{
+
+	margin: 0;
+
+	padding: 0;
+
+	list-style-type: none;
+
+}
+
+fieldset ul.checklist li
+
+{
+
+	margin-left: 0;
+
+}
+
+fieldset ul.checklist label
+
+{
+
+	float: none;
+
+	width: auto;
+
+}
+
+
+
+/* Form Validation */
+
+#validationErrorContainer
+
+{
+
+	font-weight: bold;
+
+}
+
+#validationErrorContainer ol
+
+{
+
+	margin: 0;
+
+	padding: 5px;
+
+	
+
+	background-color: #f5e3c7;
+
+	
+
+	color: #e60000;
+
+	font-size: 90%;
+
+}
+
+#validationErrorContainer ol label
+
+{
+
+	cursor: pointer;
+
+}
+
+
+
+fieldset input.error,
+
+fieldset textarea.error
+
+{
+
+	background-color: #f5e3c7;
+
+	border: 1px solid #e60000;
+
+}
+
+fieldset p.note
+{
+	padding: 0 0 6px 26%;
+}

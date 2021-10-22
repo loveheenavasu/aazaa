@@ -1,0 +1,85 @@
+<div itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Aazaa.org">
+    <div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+        <meta itemprop="bestRating" content="10">
+        <meta itemprop="ratingCount" content="20">
+        <meta itemprop="ratingValue" content="9">
+    </div>
+</div>
+{% if menuItems is defined and menuItems is not empty %}
+    <div class="container-fluid navbar-main navbar-inner-container">
+        <div class="container navbar-inner-container">
+            <div class="row menu-main-buttons">
+                {% for menuItem in menuItems %}
+                    {% if menuItem.viewPosition == 'Boven' and menuItem.pageContent and menuItem.image %}
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <a href="{{ path('page_loader', {'slug': menuItem.pageContent.path }) }}">
+                                <img src="{{ menuItem.image }}" class="img-responsive">
+                            </a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="navbar-header">
+            <span id="toggleMenu" class="navbar-mobile-menu collapsed" data-toggle="collapse" data-target="#Menu" aria-expanded="false" onclick="openMainMenu(this)"><img class="img-responsive" src="{{ asset('images/menu.png') }}"> </span>
+        </div>
+
+        <div class="container navbar-inner-container">
+            <div class="collapse navbar-collapse" id="Menu">
+                <ul class="nav navbar-nav">
+                    <li class="{% if route == app.request.schemeAndHttpHost ~ path('index') %}active{% endif %} hidden-sm hidden-md hidden-lg"><a href="{{ path('index') }}">Home</a></li>
+                    {% for menuItem in menuItems %}
+                        {% if menuItem.viewPosition == 'Hoofdmenu' and menuItem.pageContent %}
+                            <li class="{% if route == app.request.schemeAndHttpHost ~ path('page_loader', {'slug': menuItem.pageContent.path})  %}active{% endif %}"><a href="{{ path('page_loader', {'slug': menuItem.pageContent.path}) }}">{{ menuItem.name }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    <li class="{% if route == 'account_index' %}active{% endif %} hidden-sm hidden-md hidden-lg"><a href="{{ path('account_index') }}">{% if app.user %}{{ app.user.username }}{% else %}Inloggen{% endif %}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+<div class="container-fluid navbar-sub">
+    <div class="container navbar-inner-container">
+        <div class="col-md-3 col-sm-3 hidden-xs text-center">
+            <a href="{{ path('index') }}" ><img class="img-responsive" style="margin:auto; padding: 2px" src="{{ asset('images/home.png') }}" alt="Homepage"></a>
+        </div>
+        <div class="no-padding col-md-6 col-sm-6 col-xs-12">
+            <!--<div class="col-xs-3 col-md-3 no-padding text-center">
+
+                <a target="_blank" href="https://www.facebook.com/peter.aazaa">
+                    <img src="{{ asset('images/facebook.png') }}" class="img-responsive" style="width: 30px; margin-left: auto; margin-right: auto;display: block;" alt="Aazaa op Facebook">
+                </a>
+            </div>
+            <div class="col-xs-3 col-md-3 no-padding text-center">
+                <a target="_blank" href="https://www.instagram.com/aazaaacademy/">
+                    <img src="{{ asset('images/instagram.png') }}" class="img-responsive" style="width: 30px; margin-left: auto; margin-right: auto;display: block;" alt="Aazaa op Instagram">
+                </a>
+            </div>
+            <div class="col-xs-3 col-md-3 no-padding text-center">
+                <a target="_blank" href="https://www.pinterest.com/peteraazaa/">
+                    <img src="{{ asset('images/pinterest.png') }}" class="img-responsive" style="width: 30px; margin-left: auto; margin-right: auto;display: block;" alt="Aazaa op pinterest">
+                </a>
+            </div>
+            <div class="col-xs-3 col-md-3 no-padding text-center">
+                <a href="mailto:info@aazaa.org">
+                    <img src="{{ asset('images/email.png') }}" class="img-responsive" style="width: 30px; margin-left: auto; margin-right: auto;display: block;" alt="Mail ons">
+                </a>
+            </div>-->
+        </div>
+        {% if app.user %}
+        <div class="col-md-3 col-sm-3 hidden-xs text-center">
+            <a href="{{ path('account_index') }}" class="user"><img class="img-responsive" style="margin:auto; padding: 2px"  src="{{ asset('images/profile_logo.png') }}"></a>
+        </div>
+        {% else %}
+        <div class="col-md-3 col-sm-3 hidden-xs text-center">
+            <a href="{{ path('account_index') }}" class="user"><img class="img-responsive" style="margin:auto; padding: 2px"  src="{{ asset('images/login.png') }}"></a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+

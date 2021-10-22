@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="nl">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1 minimum-scale=1.0, maximum-scale=1.0">
+        <meta name="author" content="yourgeek.nl" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+        <meta http-equiv="x-ua-compatible" content="IE=edge" />
+        <meta name="mobile-web-app-capable" content="yes">
+
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/favicons/apple-touch-icon.png') }}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/favicons/favicon-32x32.png') }}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicons/favicon-16x16.png') }}">
+        <link rel="manifest" href="{{ asset('images/favicons/site.webmanifest') }}">
+        <link rel="mask-icon" href="{{ asset('images/favicons/safari-pinned-tab.svg') }}" color="#b3b565">
+        <meta name="apple-mobile-web-app-title" content="Aazaa.nl">
+        <meta name="application-name" content="Aazaa.nl">
+        <meta name="msapplication-TileColor" content="#ffc40d">
+        <meta name="theme-color" content="#ffffff">
+
+        <title>{% block metaTitle %}Aazaa.nl{% endblock %}</title>
+        <meta name="description" content="{% block description %}{% endblock %}" />
+
+        {% block socialMeta %}
+            <meta property="og:title" content="Aazaa.nl">
+            <meta property="og:description" content="">
+            <meta property="og:image" content="{{ asset('images/logo/logo-228px-250px.png') }}">
+            <meta property="og:url" content="{{ app.request.schemeAndHttpHost ~ app.request.requestUri }}">
+            <meta name="twitter:image:alt" content="Aazaa.nl">
+        {% endblock %}
+
+        <link href="https://fonts.googleapis.com/css?family=Buda:300|Dosis|Open+Sans" rel="stylesheet">
+        <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+        <link href="{{ asset('css/bootstrap.css') | versionControl }}" rel="stylesheet">
+        {% block stylesheets %}{% endblock %}
+        <link href="{{ asset('css/style.css') | versionControl }}" rel="stylesheet">
+
+        {#<link rel="stylesheet" type="text/css" href="{{ asset('css/cookiebar.css') }}" />#}
+        {#<script src="{{ asset('js/cookiebar.js') }}"></script>#}
+        {#<script>#}
+            {#window.addEventListener("load", function(){#}
+                {#window.cookieconsent.initialise({#}
+                    {#"showLink": false,#}
+                    {#"theme": "classic",#}
+                    {#"content": {#}
+                        {#"message": "Deze site gebruikt alleen maar functionele cookies",#}
+                        {#"dismiss": "OK"#}
+                    {#}#}
+                {#})});#}
+        {#</script>#}
+
+
+    </head>
+
+    <body style="background: url('{{ render(controller('App\\Controller\\DefaultController::background')) }}') no-repeat center center fixed;">
+        <nav id="TopNav" class="navbar navbar-fixed-top">
+            {{ render(controller(
+                'App\\Controller\\DefaultController::navigation',
+                {'route': app.request.uri }
+            )) }}
+
+            {% block submenu %}{% endblock %}
+        </nav>
+
+        {% block content %}{% endblock %}
+        <footer>
+            {{  render(controller(
+                'App\\Controller\\DefaultController::footer'
+            )) }}
+
+            {% block footer %}{% endblock %}
+        </footer>
+        {% include 'Models/sharePage.html.twig' %}
+        <script src="{{ asset('js/jquery-3-2-1.min.js') | versionControl }}"></script>
+        <script src="{{ asset('bundles/fosjsrouting/js/router.js') | versionControl }}"></script>
+        <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+        <script src="{{ asset('js/bootstrap.js') | versionControl }}"></script>
+        <script src="{{ asset('js/base.js') | versionControl }}"></script>
+        <script src="https://www.google.com/recaptcha/api.js?render=6Lc36OccAAAAANXYVArryrOljeF3oC2W_UMgHMaF"></script>
+        {% block javascript_footer %}{% endblock %}
+    </body>
+</html>

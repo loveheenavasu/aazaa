@@ -1,0 +1,18 @@
+{% block content %}
+
+    <div class="container base">
+        <div class="col-md-12">
+            <p>404 Error. Geen pagina gevonden. <br><br>
+			Probeer het nog een keer en als je dit bericht weer ziet, laat ons dan eventjes weten welke pagina je probeerde te bereiken, zodat we het op kunnen lossen.<br><br>
+			<a href="mailto:info@aazaa.nl">info@aazaa.nl</a> 
+    <br><br>
+    Aazaa Academie<br>
+    www.aazaa.nl</p>
+            {% if slug is defined and slug is not empty %}
+                voor: {{ slug }}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+{% extends 'Base/base.html.twig' %}

@@ -1,0 +1,82 @@
+{% block metaTitle %}{{ pageContent.metaTitle }}{% endblock %}
+{% block description %}{{ pageContent.metaDescription }}{% endblock %}
+
+{% block content %}
+    {% if pageContent.category is defined and pageContent.category is not empty %}
+        {% set baseFilter = '' %}
+        {% set paidFilter = '' %}
+        {% for filter, value in pageContent.category.cssFilter %}
+            {% if filter == pageContent.template %}
+                {% set baseFilter = value %}
+            {% endif %}
+            {% if filter == (pageContent.template ~'-betaald') %}
+                {% set paidFilter = value %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+
+    <div class="container base">
+        {% include '/Blocks/addToFavorites.html.twig' %}
+
+        <div class="col-xs-12 col-md-8">
+            <div class="video-embed-container">
+                <iframe class="video-embed" src="https:\\player.vimeo.com\video\{{ pageContent.vimeoId }}" title="{{ pageContent.title }}" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            </div>
+
+            {{ render(controller(
+                'App\\Controller\\DefaultController::navigationMiddle2'
+            )) }}
+
+            <div class="row hidden-xs hidden-sm">
+                {% for pageContentRelation in pageContent.pageContentRelations %}
+                    {% if pageContentRelation.location == 'rijboven' %}
+                        <div class="col-xs-12 col-sm-4 col-md-4">
+                            {% include '/Blocks/videoPreview.html.twig'  with {'pageContentLinked': pageContentRelation.pageContentLinked, 'baseFilter': baseFilter, 'paidFilter': paidFilter } %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+
+        <div class="col-xs-12 col-md-4">
+            {% for pageContentCategory in pageContent.category.pageContents %}
+                {% if pageContentCategory.id != pageContent.id %}
+                    {% include 'Blocks/videoBlock.html.twig' %}
+                {% endif %}
+            {% endfor %}
+        </div>
+
+
+        <div class="hidden-md hidden-lg">
+            {% for pageContentRelation in pageContent.pageContentRelations %}
+                {% if pageContentRelation.location == 'rijboven' %}
+                    <div class="col-xs-12 col-sm-4 col-md-4 template2-video">
+                        {% include 'Blocks/videoPreview.html.twig'  with {'pageContentLinked': pageContentRelation.pageContentLinked, 'baseFilter': baseFilter, 'paidFilter': paidFilter } %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block footer %}
+    <div class="container">
+        <div class="row">
+            <div class="block-square">
+                <div class="row" style="margin-left:0; margin-right: 0;">
+                    <div class="col-xs-12 seo-content-block">
+                        {{ pageContent.content | raw }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'Models/shareVideo.html.twig' %}
+{% endblock %}
+
+
+{% extends 'Base/base.html.twig' %}

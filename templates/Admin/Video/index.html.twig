@@ -1,0 +1,39 @@
+{% block content %}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>Video sessie</h1>
+        </div>
+
+        <div class="col-xs-12">
+            <table class="table table-responsive table-striped">
+                <tr>
+                    <th>Datum</th>
+                    <th>Naam</th>
+                    <th>#</th>
+                </tr>
+
+                {% for uw in userWorkshops %}
+                    {% if uw.paid %}
+                        <tr>
+                            <td>{{ uw.workshop.startDatetime | date('d-m-Y H:i') }}</td>
+                            <td>{{ uw.user.name }}</td>
+                            <td>
+                                {% if uw.workshop.videoChatSessionId is empty %}
+                                    <a class="btn btn-warning" href="{{ path('video_chat_create', { 'workshop': uw.workshop.id }) }}"><i class="fas fa-eye"></i> Start video sessie</a>
+                                {% else %}
+                                    <a class="btn btn-success" href="{{ path('video_chat_open', { 'workshop': uw.workshop.id }) }}"><i class="fas fa-eye"></i> Open sessie</a>
+                                {% endif %}
+                            </td>
+
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% extends 'Admin/base.html.twig' %}
+

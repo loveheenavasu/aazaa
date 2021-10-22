@@ -1,0 +1,23 @@
+{% block subject %}
+    {{ subject }}
+{% endblock %}
+{% block title %}
+    {{ subject }}
+{% endblock %}
+{% block content %}
+    Welkom bij de Aazaa Academie<br>
+    <br>
+    Er is een account aangemaakt met de volgende gegevens:<br>
+    Gebruikersnaam: {{ user.username }}<br>
+    <br>
+    Je account is echter nog niet geactiveerd<br>
+    Om je account te activeren klik <a href="{{ absolute_url(url('user_validate_email', {'userId': user.id, 'tokenLogin': user.tokenLogin, 'email': user.email })) }}"><b>HIER</b></a>
+    <br>
+    <br>
+   Hartelijke groet,<br>
+	Peter Aazaa <br><br>
+    Aazaa Academie<br>
+    www.aazaa.nl
+{% endblock %}
+
+{% extends 'Email/base.html.twig' %}

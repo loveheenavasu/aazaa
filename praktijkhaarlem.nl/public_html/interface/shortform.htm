@@ -1,0 +1,83 @@
+<div id="shortform">
+	<h7><b>Wil je teruggebeld of teruggemaild worden voor meer informatie en het maken van een afspraak?</b></h7>
+	<br /><br />
+	<form method="post" action="formulier.php">
+		<fieldset>
+			<label for="name">Naam:</label>			<input type="text" id="name" placeholder="Vul hier je naam in" />
+	
+			<label for="message">Telefoon of email:</label>			<textarea id="message" placeholder="Vul hier je telefoonnummer of je emailadres in"></textarea>
+
+			<input type="submit" value="Verzenden" />		
+			
+		</fieldset>
+	</form>
+</div
+
+
+/* 
+
+	** Form: shortform
+
+*/
+
+
+#shortform {
+	width: 900px; margin: 10px auto; padding: 10px 10px;
+	background: #c1cac9; border: 1px solid #336666;
+	-moz-box-shadow: 0px 0px 8px #444;
+	-webkit-box-shadow: 0px 0px 8px #444;
+}
+
+label {
+	float: left; clear: left; margin: 0 0 5px 0; width: 150px;
+	text-align: left; font-size: 13px; color: #003333; 
+}
+
+input {
+	width: 220px; height: 15px; padding: 2px 0 6px 2px; margin: 0 0 5px 0; 
+	background: #336666;
+	background: -moz-linear-gradient(top, #546A7F 0%, #5E768D 20%); /* firefox */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#546A7F), color-stop(20%,#5E768D)); /* webkit */
+	border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
+	-moz-box-shadow: 0px 1px 0px #f2f2f2;-webkit-box-shadow: 0px 1px 0px #f2f2f2;
+	font-family: sans-serif; font-size: 14px; color: #f2f2f2; text-shadow: 0px -1px 0px #334f71; 
+}
+	input::-webkit-input-placeholder  {
+    	color: #a1b2c3; text-shadow: 0px -1px 0px #38506b;  
+	}
+	input:-moz-placeholder {
+	    color: #a1b2c3; text-shadow: 0px -1px 0px #38506b; 
+	}
+
+textarea {
+	width: 420px; height: 30px; padding: 2px 0 6px 2px; margin: 0 0 5px 0; 
+	background: #336666;
+	background: -moz-linear-gradient(top, #546A7F 0%, #5E768D 20%); /* firefox */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#546A7F), color-stop(20%,#5E768D)); /* webkit */
+	border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
+	-moz-box-shadow: 0px 1px 0px #f2f2f2;-webkit-box-shadow: 0px 1px 0px #f2f2f2;
+	font-family: sans-serif; font-size: 20px; color: #f2f2f2; text-shadow: 0px -1px 0px #336666; 
+}
+	textarea::-webkit-input-placeholder  {
+    	color: #a1b2c3; text-shadow: 0px -1px 0px #38506b;  
+	}
+	textarea:-moz-placeholder {
+	    color: #a1b2c3; text-shadow: 0px -1px 0px #38506b; 
+	}
+	
+input:focus, textarea:focus {
+	background: #003333;
+	background: -moz-linear-gradient(top, #668099 0%, #728eaa 20%); /* firefox */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#668099), color-stop(20%,#728eaa)); /* webkit */
+}
+
+input[type=submit] {
+	width: 120px; height: 28px; padding: 2px 0 6px 2px; margin: 15px 0 0 0; 
+	background: #003333;
+	background: -moz-linear-gradient(top, #546A7F 0%, #5E768D 20%); /* firefox */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#546A7F), color-stop(20%,#5E768D)); /* webkit */
+	border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
+	-moz-box-shadow: 0px 1px 0px #f2f2f2;-webkit-box-shadow: 0px 1px 0px #f2f2f2;
+	font-family: sans-serif; font-size: 16px; color: #ffffff; text-shadow: 0px -1px 0px #334f71; 
+	cursor: pointer;
+}>

@@ -1,0 +1,177 @@
+{% block javascript_footer %}
+<script>
+    function getTemplate(element) {
+        $.post(Routing.generate('admin_page_get_template'),{
+                template: $(element).val()
+            },
+            function(data,status){
+                if(data.status){
+                    $('#templating').html(data.html);
+                    $('#templatefound').show()
+                }
+                else {
+                    $('#templatefound').hide();
+                    $('#templating').html('');
+                }
+            });
+    }
+</script>
+<script>
+    $(document).ready(function(){
+
+        $("#metaCount").html($("#metaDescription").val().length);
+        $("#titleCount").html($("#metaTitle").val().length);
+
+        $(".titleTag-serp-desc").html($("#metaDescription").val());
+        $(".titleTag-serp-title").html($("#metaTitle").val());
+
+        $("#metaDescription").keyup(function(){
+
+            $(".titleTag-serp-desc").html($("#metaDescription").val());
+            cal = $("#metaDescription").val().length;
+            if(cal < 210){
+                $("#metaDescriptionSign").removeClass("has-warning").removeClass("has-error");
+            }
+            else if(cal === 320){
+                $("#metaDescriptionSign").addClass("has-error");
+            }else {
+                $("#metaDescriptionSign").addClass("has-warning").removeClass("has-error");
+            }
+            $("#metaCount").html(cal);
+        });
+
+        $("#metaTitle").keyup(function(){
+            $(".titleTag-serp-title").html($("#metaTitle").val());
+            cal = $("#metaTitle").val().length;
+            if(cal < 70){
+                $("#metaTitleSign").removeClass("has-warning").removeClass("has-error");
+            }
+            else if(cal === 180){
+                $("#metaTitleSign").addClass("has-error");
+            }else {
+                $("#metaTitleSign").addClass("has-warning").removeClass("has-error");
+            }
+            $("#titleCount").html(cal);
+        });
+
+        $("#cat").change(function(){
+            var cat = $("#cat option:selected").text();
+            cat = cat.replace(/ /g, '-').toLowerCase();
+
+            var url = $("#slug").val();
+            url = url.replace(/ /g, '-').toLowerCase();
+
+            $("#serp-url-slug").html("{{ app.request.schemeAndHttpHost }}/" + cat + "/" + url);
+            $("#slug").val(url);
+        });
+
+        $("#slug").keyup(function(){
+            var cat = $("#cat option:selected").text();
+            cat = cat.replace(/ /g, '-').toLowerCase();
+
+            var url = $("#slug").val();
+            url = url.replace(/ /g, '-').toLowerCase();
+
+            $("#serp-url-slug").html("{{ app.request.schemeAndHttpHost }}/" + cat + "/" + url);
+            $("#slug").val(url);
+        });
+    });
+</script>
+{% endblock %}
+
+
+{% block content %}
+<div class="row">
+    <div class="col-xs-12">
+        <h1>ContentPagina</h1>
+    </div>
+    <div class="col-xs-12">
+        <form method="post" action="{{ path('admin_page_edit_content') }}">
+            <input type="hidden" name="pageContentId" value="{% if pageContent is defined and pageContent is not empty %}{{ pageContent.id }}{% endif %}">
+
+            <div id="templatefound">
+                <div class="form-group">
+                    <label for="title">Page Title</label>
+                    <input class="form-control" id="title" name="title" value="{% if pageContent is defined and pageContent is not empty %}{{ pageContent.title }}{% endif %}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="slug">Slug</label>
+                    <input class="form-control" id="slug" name="slug" value="{% if pageContent is defined and pageContent is not empty %}{{ pageContent.slug }}{% endif %}">
+                </div>
+
+                <div id="metaTitleSign" class="form-group">
+                    <label for="metaTitle">Meta Title</label>
+                    <input class="form-control" id="metaTitle" name="metaTitle" value="{% if pageContent is defined and pageContent is not empty %}{{ pageContent.metaTitle }}{% endif %}" required>
+                    <span id="titleCount">0</span> / 180 (mobiel) - <strong>70 (desktop)</strong>
+                </div>
+
+                <div id="metaDescriptionSign" class="form-group">
+                    <label for="metaDescription">Meta Description</label>
+                    <textarea class="form-control" id="metaDescription" name="metaDescription" maxlength="320">{% if pageContent is defined and pageContent is not empty %}{{ pageContent.metaDescription }}{% endif %}</textarea>
+                    <span id="metaCount">0</span> / <strong>210 (mobiel)</strong> - 320(desktop)
+                </div>
+
+                <hr>
+                <div class="titleTag-serp" style="width: 600px;">
+                    <div class="titleTag-serp-title-container">
+                        <span class="titleTag-serp-title" style="color: #1a0dab; white-space: nowrap;"></span>
+                    </div>
+                    <div class="titleTag-serp-url" id="serp-url-slug" style="font-size: 14px; color: #006621">
+                        {% if pageContent is defined and pageContent is not empty %}
+                        {{ app.request.schemeAndHttpHost ~ '/' ~ pageContent.path }}
+                        {% endif %}
+                    </div>
+                    <div class="titleTag-serp-desc" style="font-size: 13px; line-height: 18px;"></div>
+                </div>
+                <hr>
+
+                <div class="form-group">
+                    <label for="content">Content</label>
+                    <textarea class="form-control tinymce" id="content" name="content">{% if pageContent is defined and pageContent is not empty %}{{ pageContent.content }}{% endif %}</textarea>
+                </div>
+
+                <hr>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="active" id="optionsRadios1" value="0" {% if pageContent is defined and pageContent is not empty and pageContent.active == 0 %}checked{% endif %}>Niet Online zichtbaar
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="active" id="optionsRadios2" value="1" {% if pageContent is defined and pageContent is not empty and pageContent.active != 1 %}{% else %}checked{% endif %}>Online zichtbaar
+                    </label>
+                </div>
+                <hr>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="paid" id="optionsRadios3" value="0" {% if pageContent is defined and pageContent is not empty and pageContent.paid == 0 %}checked{% endif %}>Gratis
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="paid" id="optionsRadios4" value="1" {% if pageContent is defined and pageContent is not empty and pageContent.paid != 1 %}{% else %}checked{% endif %}>Betaald
+                    </label>
+                </div>
+                <hr>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="accountRequired" id="optionsRadios5" value="0" {% if pageContent is defined and pageContent is not empty and pageContent.accountRequired == 0 %}checked{% endif %}> Account is niet verplicht
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="accountRequired" id="optionsRadios6" value="1" {% if pageContent is defined and pageContent is not empty and pageContent.accountRequired != 1 %}{% else %}checked{% endif %}>Account is verplicht
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-success pull-right">Opslaan</button>
+            </div>
+        </form>
+        <a href="{{ path('admin_page_overview') }}" class="btn btn-default pull-left">Terug</a>
+    </div>
+</div>
+
+
+{% endblock %}
+{% extends 'Admin/base.html.twig' %}
+

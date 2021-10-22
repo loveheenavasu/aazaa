@@ -1,0 +1,154 @@
+/*
+	# Company: Centrumpraktijk
+	# File: layout.css
+*/
+
+/* 
+	** Components :: Navigation
+*/
+.global-nav ul
+{
+	width: 200px;
+	margin: 0;
+	padding: 0;
+	
+	position: relative;
+	list-style-type: none;
+}
+.global-nav ul li
+{
+	margin: 0;
+	height: 1%;
+}
+.global-nav ul li a:link,
+.global-nav ul li a:visited
+{
+	height: 1%;
+	display: block;
+	padding: 16px 0 16px 8px;
+	
+	border-bottom: 2px solid #339999;
+	
+	color: #003333;
+	font-weight: bold;
+	text-decoration: none;
+}
+.global-nav ul li a:hover
+{
+	text-decoration: underline;
+}
+.global-nav ul li.last-item a
+{
+	border: 0;
+}
+
+/* 
+	** Components :: Core
+*/
+.offleft
+{
+	position: absolute;
+	left: -9999em;
+	width: 1000em;
+}
+
+hr 
+{
+	clear: both;
+	visibility: hidden;
+	height: 16px !important;
+	height: 1px;
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+
+.hide
+{
+	display: none;
+}
+
+.fleft
+{
+	float: left;
+}
+.fright
+{
+	float: right;
+}
+.aright
+{
+	text-align: right;
+}
+.center
+{
+	text-align: center;
+}
+
+.group
+{
+	padding: 15px;
+}
+
+.bold
+{
+	font-weight: bold;
+}
+
+.txt-large
+{
+	font-size: 1.2em;
+}
+
+
+
+/* flat lists */
+ul.flat
+{
+	padding: 0;
+	list-style-type: none;
+}
+ul.flat li
+{
+	margin: 0;
+}
+
+
+/* inline lists */
+ul.inline
+{
+	padding: 0;
+	list-style-type: none;
+}
+ul.inline li
+{
+	display: inline;
+	margin: 0;
+}
+
+
+/* image button list */
+ul.image-buttons 
+{
+	padding: 8px 0 0 104px;
+	list-style-type: none;
+}
+ul.image-buttons li
+{
+	float: left;
+	margin: 0;
+	padding-right: 26px;
+}
+
+/* white gradient */
+.white-gradient
+{
+	margin: 2px 0 18px;
+	padding: 18px;
+	
+	background-image: url(../images/gradient.jpg);
+	background-repeat: repeat-y;
+	background-position: 100% 0%;
+	
+	color: #000;
+}

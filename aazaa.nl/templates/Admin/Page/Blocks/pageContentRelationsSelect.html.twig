@@ -1,0 +1,30 @@
+{% if position is defined and location is defined %}
+    <div class="form-group">
+        <label for="cat">{{ location }}</label>
+        <select id="cat" name="location[{{ location }}][{{ position }}]" class="form-control">
+            {% for category in categoryList %}
+                <optgroup label="{{ category.name }}">
+                    {% for pageContentOption in category.pageContents %}
+                        <option value="{{ pageContentOption.id }}"
+                                {% if pageContent is not empty %}
+                                    {% for relation in pageContent.pageContentRelations %}
+                                        {% if relation.location == location %}
+                                            {% if relation.position == position %}
+                                                {% if relation.pageContentLinked.id == pageContentOption.id %}
+                                                    selected
+                                                {% endif %}
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            >
+                            {{ pageContentOption.title }}
+                        </option>
+                    {% endfor %}
+                </optgroup>
+            {% endfor %}
+        </select>
+    </div>
+{% endif %}
+
+

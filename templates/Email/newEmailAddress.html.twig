@@ -1,0 +1,17 @@
+{% block subject %}
+    Emailadres gewijzigd - Aazaa Academie
+{% endblock %}
+{% block title %}
+    Je emailadres is gewijzigd op aazaa.nl
+{% endblock %}
+{% block content %}
+    Je emailadres is succesvol gewijzigd:<br>
+    <br>
+    Je emailadres is van {{ oldEmail }} naar {{ user.email }} gewijzigd.<br>
+    <br>
+    <br>
+    Aazaa Academie<br>
+    www.aazaa.nl
+{% endblock %}
+
+{% extends 'Email/base.html.twig' %}

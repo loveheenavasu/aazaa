@@ -1,0 +1,27 @@
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Gelukt!</strong> {{ message }}
+    </div>
+{% endfor %}
+
+{% for message in app.flashes('warning') %}
+    <div class="alert alert-warning alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Opgelet!</strong> {{ message }}
+    </div>
+{% endfor %}
+
+{% for message in app.flashes('danger') %}
+    <div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Error!</strong> {{ message }}
+    </div>
+{% endfor %}
+
+{% for message in app.flashes('info') %}
+    <div class="alert alert-info alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Ter info</strong> {{ message }}
+    </div>
+{% endfor %}

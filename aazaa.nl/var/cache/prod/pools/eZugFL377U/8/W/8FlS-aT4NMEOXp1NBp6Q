@@ -1,0 +1,7 @@
+<?php return [PHP_INT_MAX, [
+    'groups' => [
+        'viewPosition',
+    ],
+    'position' => 'position',
+    'useObjectClass' => 'App\\Entity\\PageContentCategory',
+]];

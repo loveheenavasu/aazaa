@@ -1,0 +1,29 @@
+{% if pageContentLinked is defined and pageContentLinked is not empty %}
+    <a href="{{ path('page_loader', {'slug': pageContentLinked.path }) }}" class="block embed-responsive video-container"
+       style="
+       {% if pageContentLinked.paid %}
+           {% if baseFilter is defined %}
+                   filter: {{ baseFilter }}
+           {% endif %}
+       {% else %}
+           {% if paidFilter is defined %}
+                   filter: {{ paidFilter }}
+           {% endif %}
+       {% endif %}
+    ">
+        <div class="video-bottom">
+            <span class="text top">{% if pageContentLinked.previewTop | length >1 %}{{ pageContentLinked.previewTop }}{% else %}{{ pageContentLinked.category.name }}{% endif %}</span>
+
+            <div class="image-container">
+                <img src="{{ asset('images/logo/logo-91px-100px.png') }}"/>
+            </div>
+            <span class="text bottom">{{ pageContentLinked.previewBottom }}</span>
+
+            <div class="video-top">
+                <strong>{{ pageContentLinked.category.name }}</strong><br>
+                {{ pageContentLinked.shortDescription }}
+            </div>
+
+        </div>
+    </a>
+{% endif %}

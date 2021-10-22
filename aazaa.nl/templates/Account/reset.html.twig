@@ -1,0 +1,36 @@
+{% block content %}
+
+    <div class="container">
+        <div class="col-md-12">
+            <div class="block dark">
+                <h2>Wachtwoord resetten</h2>
+                <p>Er zal een e-mail worden gestuurd met een nieuwe wachtwoord</p>
+                <div class="row">
+                    <form action="{{ path("account_reset_pass") }}" method="post">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token('reset') }}" />
+                        <div class="col-xs-12">
+                            {% if successmessage is defined %}
+                                <div class="col-xs-12" style="color: green">{{ successmessage }}</div>
+                            {% endif %}
+                            {% if errormessage is defined %}
+                                <div class="col-xs-12" style="color: red">{{ errormessage }}</div>
+                            {% endif %}
+
+                            <label class="input col-xs-12">
+                                <div class="input-group col-xs-12">
+                                    <label>E-mailadres:</label>
+                                    <input type="text" class="form-control input-aazaa  col-xs-8" name="email" value="" placeholder="email" required="required" />
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col-xs-12">
+                            <input type="submit" name="submit" value="Aanvragen" class="btn btn-aazaa pull-right" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% extends 'Base/base.html.twig' %}

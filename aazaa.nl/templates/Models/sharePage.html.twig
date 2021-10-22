@@ -1,0 +1,35 @@
+
+<div class="modal fade" id="sharePageModel" role="dialog">
+    <div class="modal-dialog model-background">
+        <form method="post" action="{{ path('account_share_page') }}">
+            <div class="modal-content block">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Met wie zou je deze pagina willen delen ?</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token('share') }}">
+                        <input type="hidden" name="pageUrl" value="{{ app.request.schemeAndHttpHost ~ app.request.requestUri }}">
+                        <label class="input col-xs-12">
+                            <div class="input-group col-xs-12">
+                                <label>Naam ontvanger: *</label>
+                                <input type="text" minlength="4" class="form-control input-aazaa col-xs-12" name="name" required="required" value="">
+                            </div>
+                        </label>
+                        <label class="input col-xs-12">
+                            <div class="input-group col-xs-12">
+                                <label>Emailadres ontvanger: *</label>
+                                <input type="email" class="form-control input-aazaa col-xs-12" name="email" required="required" value="">
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-aazaa">Deel Pagina</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

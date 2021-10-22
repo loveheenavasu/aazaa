@@ -1,0 +1,56 @@
+{% block loginbody %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-3 col-sm-6 col-sm-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center">
+                        <img src="{{ asset('images/logo/logo-91px-100px.png') }}" alt="logo" style="height: 60px;" />
+                    </div>
+
+                    <div class="panel-body">
+                        <form action="{{ path("admin_login_check") }}" method="post">
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" />
+
+                            <label class="input">
+                                <div class="input-group">
+									<span class="input-group-addon" title="Gebruikersnaam" data-toggle="tooltip" data-html="true">
+										<i class="fa fa-user"></i>
+									</span>
+                                    <input type="text" class="form-control" name="_username" value="{{ last_username }}" placeholder="Gebruikersnaam" required="required" />
+                                </div>
+                            </label>
+
+                            <label class="input">
+                                <div class="input-group">
+									<span class="input-group-addon" title="" data-toggle="tooltip" data-html="true">
+										<i class="fa fa-key"></i>
+									</span>
+
+                                    <input type="password" class="form-control" name="_password" placeholder="Wachtwoord" required="required" />
+                                </div>
+                            </label>
+
+                            <label class="input">
+                                <div class="input-group">
+									<span class="input-group-addon">
+										<input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+									</span>
+
+                                    <label class="form-control" for="remember_me">Onthouden</label>
+                                </div>
+                            </label>
+
+                            {% if error %}
+                                <div>{{ error.messageKey | trans( error.messageData, 'security' ) }}</div>
+                            {% endif %}
+
+                            <input type="submit" id="_submit" name="_submit" value="Inloggen" class="btn btn-success pull-right" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% extends 'Admin/base.html.twig' %}

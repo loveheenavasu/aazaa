@@ -1,0 +1,29 @@
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>Blokken</h1>
+        </div>
+        <div class="col-xs-12">
+            <form method="post" action="{{ path('admin_collector_edit') }}">
+                <input type="hidden" name="id" value="{% if collector is defined and collector is not empty %}{{ collector.id }}{% endif %}">
+                <div class="form-group">
+                    <label for="key">Sleutel</label>
+                    <input class="form-control" type="text" id="key" name="key" value="{% if collector is defined and collector is not empty %}{{ collector.key }}{% endif %}" required>
+                </div>
+                <div class="form-group">
+                    <label for="value">Waarde Lang</label>
+                    <textarea class="form-control tinymce" id="value" name="value" rows="5">{% if collector is defined and collector is not empty %}{{ collector.value }}{% endif %}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="valueInt">Waarde Kort / getal</label>
+                    <input class="form-control" type="number" id="valueInt" name="valueInt" value="{% if collector is defined and collector is not empty %}{{ collector.valueInt }}{% endif %}">
+                </div>
+                <p>* let op, waarde kort, kan een valuta zijn. Deze dient dan met cent ingevoerd te worden 3 euro = 300 </p>
+                <a href="{{ path('admin_collector_index') }}" class="btn btn-default pull-left">Terug</a>
+                <button type="submit" class="btn btn-success pull-right">Opslaan</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+{% extends 'Admin/base.html.twig' %}
+

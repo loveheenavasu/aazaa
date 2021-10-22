@@ -1,0 +1,26 @@
+admin_user_overview:
+    path:     /
+    defaults: { _controller: App\Controller\Admin\UserController::index }
+
+admin_user_detail:
+    path:     /bekijk/{user}/
+    defaults: { _controller: App\Controller\Admin\UserController::detail }
+
+admin_user_disable:
+    path:     /uitschakelen/{user}/
+    defaults: { _controller: App\Controller\Admin\UserController::disable }
+
+admin_user_enable:
+    path:     /inschakelen/{user}/
+    defaults: { _controller: App\Controller\Admin\UserController::enable }
+
+
+
+admin_user_mailing:
+    path:     /mailing/
+    defaults: { _controller: App\Controller\Admin\UserController::mailing }
+
+admin_user_send_mailing:
+    path:     /send-mailing/
+    defaults: { _controller: App\Controller\Admin\UserController::sendMailing }
+

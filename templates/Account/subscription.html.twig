@@ -1,0 +1,45 @@
+{% block accountContent %}
+    <div class="block dark">
+        <h2>Lidmaatschap</h2>
+        <div class="row">
+            {% if errormessage is defined and not empty %}
+                <div>{{ errormessage }}</div>
+            {% endif %}
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                {% if app.user.subscriptionActiveTillDate %}
+                    {% if app.user.subscriptionActiveTillDate |date('Ymd') > "NOW"|date('Ymd')  %}
+                        Je lidmaatschap is geldig tot {{ app.user.subscriptionActiveTillDate | date('d-m-Y H:i') }}.<br>
+                        {% if app.user.subscriptionActive %}
+                            Je lidmaatschap wordt automatisch verlengd.<br>
+                        {% else %}
+                            Je lidmaatschap wordt niet meer automatisch verlengd. <br>Na {{ app.user.subscriptionActiveTillDate | date('d-m-Y H:i') }} wordt je account omgezet naar de gratis versie.
+                        {% endif %}
+                    {% else %}
+                        Je lidmaatschap is verlopen. Wij hebben je lidmaatschap niet automatisch kunnen verlengen.
+                    {% endif %}
+                {% else %}
+                    Je bent nog geen lid van de Aazaa Academie.   <br>  <br>  <br>
+					Lid worden heeft veel voordelen:  <br>  <br>
+					* Je krijgt toegang tot alle video's, meditaties & oefeningen. <br>
+					* Je kunt meer video's per week bekijken.   <br>
+					* Je kunt meer video's als Favoriet opslaan.   <br>
+					* Bovendien krijg je voorrang bij het boeken van sessies en workshops.   <br>
+					
+                {% endif %}
+            </div>
+            <div class="col-xs-12">
+                {% if app.user.subscriptionActive %}
+                    <a href="{{ path('account_stop_subscription') }}" class="btn btn-admin pull-right">Opzeggen</a>
+                {% else %}
+                    <a href="{{ path('account_new_subscription') }}" class="btn btn-admin pull-right">Word nu lid!</a>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% extends 'Account/base.html.twig' %}

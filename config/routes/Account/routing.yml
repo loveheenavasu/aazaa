@@ -1,0 +1,58 @@
+account_login:
+    path:     /inloggen
+    defaults: { _controller: App\Controller\Account\SecurityController::loginAction }
+
+account_login_check:
+    path:     /inloggen_check
+    defaults: { _controller: App\Controller\Account\SecurityController::checkAction }
+
+account_logout:
+    path:     /uitloggen
+    defaults: { _controller: App\Controller\Account\SecurityController::logoutAction }
+
+account_register:
+    path:     /registreren
+    defaults: { _controller: App\Controller\Account\SecurityController::register }
+
+account_update:
+    path:     /update-gebruiker
+    defaults: { _controller: App\Controller\Account\SecurityController::update }
+
+account_subscription:
+    path:     /lidmaatschap
+    defaults: { _controller: App\Controller\Account\DefaultController::subscription }
+
+account_new_subscription:
+    path:     /word-lid
+    defaults: { _controller: App\Controller\Account\DefaultController::generateSubscription }
+
+
+account_stop_subscription:
+    path:     /stop-lidmaatschap
+    defaults: { _controller: App\Controller\Account\DefaultController::stopSubscription }
+
+
+account_viewed_videos:
+    path:     /bekeken-videos
+    defaults: { _controller: App\Controller\Account\DefaultController::viewedVideos }
+
+account_workshop:
+    path:     /workshop-sessies
+    defaults: { _controller: App\Controller\Account\DefaultController::workshop }
+
+account_workshop_video_session:
+    path:     /video-sessie/{userWorkshop}
+    defaults: { _controller: App\Controller\Account\DefaultController::startVideoSession }
+
+
+account_index:
+    path:     /
+    defaults: { _controller: App\Controller\Account\DefaultController::index }
+
+account_favorites:
+    path:     /favorieten
+    defaults: { _controller: App\Controller\Account\DefaultController::favorites }
+
+account_limit:
+    path:     /limiet-bereikt
+    defaults: { _controller: App\Controller\Account\DefaultController::index }

@@ -1,0 +1,40 @@
+{% block content %}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>Collector</h1>
+        </div>
+        <div class="col-xs-push-6 col-xs-6">
+            <a class="pull-right btn btn-danger" href="{{ path('admin_collector_edit') }}"><i class="fa fa-plus"></i> Nieuw</a>
+        </div>
+
+        <div class="col-xs-12">
+            <table class="table table-responsive table-striped">
+                <tr>
+                    <th{% if pagination.isSorted('c.id') %} class="sorted"{% endif %} >{{ knp_pagination_sortable(pagination, 'Id', 'c.id') }}</th>
+                    <th{% if pagination.isSorted('c.key') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Sleutel', 'c.key') }}</th>
+                    <th{% if pagination.isSorted('c.value') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Waarde', 'c.value') }}</th>
+                    <th{% if pagination.isSorted('c.valueInt') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Waarde', 'c.valueInt') }}</th>
+                    <th>#</th>
+                </tr>
+
+                {% for collector in pagination %}
+                    <tr>
+                        <td>{{ collector.id }}</td>
+                        <td>{{ collector.key }}</td>
+                        <td>{{ collector.value | slice(0, 20) }}</td>
+                        <td>{{ collector.valueInt }} </td>
+                        <td><a class="btn btn-warning" href="{{ path('admin_collector_edit', { 'id': collector.id }) }}"><i class="far fa-edit"></i> Bewerken</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+            <div class="navigation">
+                {{ knp_pagination_render(pagination) }}
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+{% extends 'Admin/base.html.twig' %}

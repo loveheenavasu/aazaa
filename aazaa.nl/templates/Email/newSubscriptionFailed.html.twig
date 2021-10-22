@@ -1,0 +1,17 @@
+{% block subject %}
+    Lidmaatschap - Aazaa.org
+{% endblock %}
+{% block title %}
+    Lidmaatschap Aazaa.org
+{% endblock %}
+{% block content %}
+
+    Beste {% if user.firstname is not empty %} {{ user.firstname }} {{ user.lastname }}{% else %}{{ user.username }}{% endif %}<br>
+    <br>
+    De betaling voor de lidmaatschap bij Aazaa.org is helaas niet geluk!<br>
+    <br>
+    Met vriendelijke groet,<br>
+    Aazaa.org
+{% endblock %}
+
+{% extends 'Email/base.html.twig' %}

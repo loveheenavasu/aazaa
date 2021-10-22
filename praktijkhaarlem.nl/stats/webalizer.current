@@ -1,0 +1,598 @@
+# Webalizer V2.23-08 Incremental Data - 08/02/2021 23:39:16
+2021 8 2 23 39 16
+282 129 59 54 21 26 817115 178 76 0
+35 3 46 1 2
+158 85 545906 33 108 39
+124 44 271209 35 70 37
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+5 1 5444 1
+12 3 27035 5
+0 0 0 0
+10 1 7078 4
+12 3 18072 6
+6 2 22424 2
+38 19 95198 27
+48 37 214274 45
+3 1 17753 1
+25 4 24355 22
+5 2 18870 3
+11 5 39586 6
+3 2 9786 2
+8 4 28443 5
+9 5 22137 2
+3 2 8839 3
+5 1 7322 3
+19 8 51534 11
+8 4 21998 5
+13 3 29677 4
+15 10 74390 5
+4 3 21543 3
+5 2 11947 1
+15 7 39410 12
+0
+0
+0
+129
+0
+0
+0
+0
+0
+0
+0
+92
+0
+0
+0
+0
+0
+0
+0
+0
+0
+61
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+# -urls- 
+/companies.html
+0 1 3345441614656004456 4265 0 0
+/onzekerheid.html
+0 3 18446744069414584320 15591 1 1
+/angsten.html
+0 3 0 18165 1 1
+/therapycoaching.html
+0 2 0 9610 0 0
+/sitemap.xml
+0 2 0 1112 0 0
+/couplestherapy.html
+0 1 0 6326 0 0
+/interface/images/onzeker.gif
+0 1 0 9576 0 0
+/practice.html
+0 1 0 4784 0 0
+/englishcoaching.html
+0 2 0 21213 1 0
+/traject.html
+0 4 0 21791 2 2
+/coaching.html
+0 3 0 24689 3 2
+/interface/images/five_star_rating.png
+0 1 0 11356 0 0
+/course.html
+0 2 0 9546 1 0
+/problemen.html
+0 3 0 19017 1 1
+/methodiek.html
+0 2 0 12180 2 2
+/stressed.html
+0 2 0 9892 0 0
+/dielesen.html
+0 3 0 35540 2 2
+/interface/images/therapeut.gif
+0 1 0 6312 0 0
+/relatietherapie.html
+0 1 0 6370 1 1
+/sitemaps.html
+0 3 0 18686 1 1
+/peterdielesen.html
+0 1 0 4810 1 1
+/fear.html
+0 2 0 22820 1 1
+/burnedout.html
+0 1 0 5453 0 0
+/interface/javascript/jquery.cp.js
+0 1 4284458638277498144 897 0 0
+/advice.html
+0 3 0 25816 2 1
+/private.html
+0 1 0 4037 0 0
+/panic.html
+0 2 0 9560 1 0
+/interface/css/layout.css
+0 1 0 1771 0 0
+/therapiecoaching.html
+0 1 0 5020 1 1
+/clients.html
+0 1 0 6185 0 0
+/insecure.html
+0 2 0 21464 1 1
+/method.html
+0 1 0 6016 0 0
+/clienten.html
+0 3 0 16236 1 1
+/english.html
+0 2 0 9658 2 2
+/interface/images/personalcoaching.gif
+0 1 0 7475 0 0
+/bedrijven.html
+0 2 0 4522 0 0
+/burnout.html
+0 5 0 30000 3 2
+/interface/css/components.css
+0 1 7453010373645639784 669 0 0
+/interface/images/hyperventilatie.gif
+0 1 0 10713 0 0
+/centrumpraktijk.html
+0 2 0 11904 1 1
+/stress.html
+0 3 0 10058 4 3
+/interface/css/screen.css
+0 1 0 684 0 0
+/particulieren.html
+0 2 0 4354 0 0
+/contact.html
+0 5 0 37466 3 1
+/interface/images/bellen.jpg
+0 1 0 20279 0 0
+/
+0 28 0 126033 29 9
+/callmail.html
+0 1 0 4268 0 0
+/therapie.html
+0 2 0 10972 3 1
+/paniek.html
+0 3 0 14592 1 1
+/problems.html
+0 2 0 11192 0 0
+/interface/javascript/jquery.js
+0 1 5572158126597092915 26999 0 0
+/interface/css/form.css
+0 1 0 670 0 0
+/interface/images/relatietherapeut.gif
+0 1 0 10180 0 0
+/therapy.html
+0 3 0 27595 1 1
+# End Of Table - urls
+# -sites- (monthly)
+40.77.167.17
+0 2 0 648 2 1627925420
+/coaching.html
+54.155.17.41
+0 2 1 4571 1 1627916864
+/
+114.119.135.32
+0 1 0 285 0 0
+-
+5.255.231.154
+0 1 0 285 0 0
+-
+54.36.148.192
+0 1 0 285 0 0
+-
+45.146.164.50
+0 4 0 1140 0 0
+-
+54.202.115.4
+0 2 1 4571 1 1627861021
+/
+5.255.253.180
+0 1 0 311 1 1627878950
+/
+213.180.203.34
+0 1 0 285 0 0
+-
+196.206.91.247
+0 2 1 4571 1 1627899119
+/
+185.151.125.197
+0 1 1 15065 1 1627840548
+/
+185.191.171.20
+0 1 0 324 1 1627840958
+/therapie.html
+45.133.172.23
+0 1 1 15106 1 1627934475
+/contact.html
+111.221.46.55
+0 9 1 6548 1 1627867972
+/
+185.191.171.14
+0 1 1 5486 1 1627790543
+/therapie.html
+185.191.171.5
+0 1 0 285 0 0
+-
+5.45.207.141
+0 1 0 285 0 0
+-
+35.226.151.121
+0 20 1 0 1 1627895731
+-
+185.191.171.11
+0 1 1 5029 1 1627841596
+/stress.html
+54.162.102.36
+0 3 0 908 0 0
+-
+54.36.148.196
+0 25 25 121934 25 1627937983
+/
+40.77.167.74
+0 2 2 21536 0 0
+-
+5.255.231.153
+0 3 2 8857 2 1627878954
+/
+54.186.36.104
+0 3 1 4885 1 1627860850
+/
+207.46.13.177
+0 4 1 8443 3 1627936153
+/burnout.html
+213.180.203.18
+0 1 1 4268 1 1627801132
+/
+69.163.216.115
+0 2 0 600 0 0
+-
+40.77.167.13
+0 1 0 331 1 1627847640
+-
+52.27.136.61
+0 2 1 4571 1 1627859754
+/
+40.77.167.43
+0 3 3 36167 0 0
+-
+216.244.66.194
+0 30 10 157516 10 1627931698
+/englishcoaching.html
+5.45.207.140
+0 1 0 285 0 0
+-
+136.243.215.99
+0 6 2 2346 0 0
+-
+34.253.80.15
+0 3 0 928 0 0
+-
+185.191.171.23
+0 2 2 10266 2 1627858196
+/panic.html
+207.46.13.6
+0 14 0 4234 0 0
+-
+94.198.159.216
+0 4 3 14437 1 1627926218
+/
+40.77.167.24
+0 1 0 332 1 1627878654
+-
+2a00:d78:0:710:94:198:159:216
+0 4 3 14437 1 1627926221
+/
+157.55.39.9
+0 4 1 11622 3 1627920390
+/
+34.217.34.93
+0 1 0 303 1 1627945903
+/
+199.187.209.30
+0 1 1 5590 1 1627940171
+/contact.html
+54.36.149.32
+0 2 0 606 0 0
+-
+185.191.171.10
+0 2 1 5058 1 1627868153
+/course.html
+111.221.46.53
+0 9 0 2810 1 1627876288
+/
+107.180.105.195
+0 2 0 600 0 0
+-
+195.154.123.9
+0 6 6 31690 0 0
+-
+3.250.123.63
+0 2 1 4571 1 1627902681
+/
+167.114.103.160
+0 72 50 251863 1 1627801881
+/traject.html
+54.36.148.70
+0 1 0 285 0 0
+-
+185.191.171.15
+0 1 0 285 0 0
+-
+18.236.76.122
+0 2 1 4571 1 1627860832
+/
+185.191.171.4
+0 1 0 285 0 0
+-
+34.221.104.122
+0 2 0 617 1 1627861046
+/
+40.77.167.54
+0 2 0 570 0 0
+-
+34.208.160.82
+0 1 1 4268 1 1627945813
+/
+185.191.171.21
+0 1 0 321 0 0
+-
+35.160.98.203
+0 1 1 4268 1 1627859545
+/
+3.249.180.4
+0 2 1 4571 1 1627888003
+/
+# End Of Table - sites (monthly)
+# -sites- (daily)
+40.77.167.17
+0 1 0 324 1 1627925420
+/coaching.html
+54.155.17.41
+0 2 1 4571 1 1627916864
+/
+114.119.135.32
+0 1 0 285 0 0
+-
+54.36.148.192
+0 1 0 285 0 0
+-
+45.146.164.50
+0 2 0 570 0 0
+-
+5.255.253.180
+0 1 0 311 1 1627878950
+/
+196.206.91.247
+0 2 1 4571 1 1627899119
+/
+45.133.172.23
+0 1 1 15106 1 1627934475
+/contact.html
+111.221.46.55
+0 9 1 6548 1 1627867972
+/
+5.45.207.141
+0 1 0 285 0 0
+-
+35.226.151.121
+0 20 1 0 1 1627895731
+-
+54.162.102.36
+0 3 0 908 0 0
+-
+54.36.148.196
+0 13 13 60775 13 1627937983
+/
+40.77.167.74
+0 2 2 21536 0 0
+-
+5.255.231.153
+0 2 1 4589 1 1627878954
+/
+207.46.13.177
+0 1 0 323 1 1627936153
+/burnout.html
+69.163.216.115
+0 2 0 600 0 0
+-
+216.244.66.194
+0 9 3 45181 3 1627931698
+/englishcoaching.html
+5.45.207.140
+0 1 0 285 0 0
+-
+136.243.215.99
+0 6 2 2346 0 0
+-
+207.46.13.6
+0 6 0 1818 0 0
+-
+94.198.159.216
+0 4 3 14437 1 1627926218
+/
+40.77.167.24
+0 1 0 332 1 1627878654
+-
+2a00:d78:0:710:94:198:159:216
+0 4 3 14437 1 1627926221
+/
+157.55.39.9
+0 3 1 11319 2 1627920390
+/
+34.217.34.93
+0 1 0 303 1 1627945903
+/
+199.187.209.30
+0 1 1 5590 1 1627940171
+/contact.html
+54.36.149.32
+0 2 0 606 0 0
+-
+185.191.171.10
+0 1 1 4773 1 1627868153
+/course.html
+111.221.46.53
+0 9 0 2810 1 1627876288
+/
+195.154.123.9
+0 6 6 31690 0 0
+-
+3.250.123.63
+0 2 1 4571 1 1627902681
+/
+185.191.171.4
+0 1 0 285 0 0
+-
+34.208.160.82
+0 1 1 4268 1 1627945813
+/
+3.249.180.4
+0 2 1 4571 1 1627888003
+/
+# End Of Table - sites (daily)
+# -referrers- 
+http://praktijkhaarlem.nl/home
+0 1
+http://praktijkhaarlem.nl/
+0 1
+https://www.praktijkhaarlem.nl
+0 1
+https://praktijkhaarlem.nl/contact.html
+0 1
+https://praktijkhaarlem.nl/
+0 3
+http://www.praktijkhaarlem.nl/
+0 1
+https://praktijkhaarlem.nl
+0 2
+- (Direct Request)
+0 254
+http://www.praktijkhaarlem.nl/robots.txt
+0 1
+http://praktijkhaarlem.nl/old
+0 1
+http://praktijkhaarlem.nl/new
+0 1
+http://141.138.169.205
+0 3
+http://praktijkhaarlem.nl/backup
+0 1
+http://praktijkhaarlem.nl
+0 1
+http://praktijkhaarlem.nl/main
+0 1
+http://praktijkhaarlem.nl/wp
+0 1
+https://praktijkhaarlem.nl/interface/css/screen.css
+0 3
+http://praktijkhaarlem.nl/wp-login.php
+0 2
+http://praktijkhaarlem.nl/bc
+0 1
+http://praktijkhaarlem.nl/bk
+0 1
+http://praktijkhaarlem.nl/wordpress
+0 1
+# End Of Table - referrers
+# -agents- 
+Mozilla/5.0 (compatible;PetalBot;+https://webmaster.petalsearch.com/site/petalbot)
+0 1
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36
+0 1
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.72 Safari/537.36 Edg/90.0.8
+0 1
+Mozilla/5.0 (X11; CrOS x86_64 13505.63.0) AppleWebKit/537.36 (KHTML, like Gecko)
+0 1
+Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)
+0 33
+python-requests/2.24.0
+0 2
+Mozilla/5.0 (compatible; AhrefsBot/7.0; +http://ahrefs.com/robot/)
+0 35
+VT
+0 2
+Mozilla/5.0 (compatible; SemrushBot/7~bl; +http://www.semrush.com/bot.html)
+0 11
+Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36
+0 14
+MixnodeCache/1.8(+https://cache.mixnode.com/)
+0 3
+Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:72.0) Gecko/20100101 Firefox/72.0
+0 3
+Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3427.0 Safari/537.36
+0 1
+Mozilla/5.0 (compatible; BLEXBot/1.0; +http://webmeup-crawler.com/)
+0 6
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36
+0 1
+Mozilla/5.0 (compatible; MJ12bot/v1.4.8; http://mj12bot.com/)
+0 72
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36
+0 3
+Mozilla/5.0 (compatible; YandexBot/3.0; +http://yandex.com/bots)
+0 9
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:81.0) Gecko/20100101 Firefox/81.0
+0 6
+virustotal
+0 2
+Mozilla/5.0 (compatible; DotBot/1.2; +https://opensiteexplorer.org/dotbot; help@moz.com)
+0 30
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36
+0 21
+Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:62.0) Gecko/20100101 Firefox/62.0
+0 4
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36
+0 1
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
+0 1
+Mozlila/5.0 (Linux; Android 7.0; SM-G892A Bulid/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/60.0.31
+0 18
+# End Of Table - agents
+# -search strings- 
+# End Of Table - search strings
+# -usernames- 
+# End Of Table - usernames

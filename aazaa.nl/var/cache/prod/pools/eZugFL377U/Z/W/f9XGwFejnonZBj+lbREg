@@ -1,0 +1,9 @@
+<?php return [PHP_INT_MAX, [
+    'create' => [
+        'created',
+    ],
+    'update' => [
+        'updated',
+    ],
+    'useObjectClass' => 'App\\Entity\\UserFavorites',
+]];

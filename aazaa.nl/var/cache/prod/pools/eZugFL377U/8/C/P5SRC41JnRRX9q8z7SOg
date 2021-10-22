@@ -1,0 +1,85 @@
+<?php
+
+namespace Symfony\Component\VarExporter\Internal;
+
+return $getExpiry ? PHP_INT_MAX : Hydrator::hydrate(
+    $o = [
+        clone (($p = &Registry::$prototypes)['Doctrine\\ORM\\Query\\ParserResult'] ?? Registry::p('Doctrine\\ORM\\Query\\ParserResult')),
+        clone ($p['Doctrine\\ORM\\Query\\Exec\\SingleSelectExecutor'] ?? Registry::p('Doctrine\\ORM\\Query\\Exec\\SingleSelectExecutor')),
+        clone ($p['Doctrine\\ORM\\Query\\ResultSetMapping'] ?? Registry::p('Doctrine\\ORM\\Query\\ResultSetMapping')),
+    ],
+    null,
+    [
+        'Doctrine\\ORM\\Query\\ParserResult' => [
+            '_sqlExecutor' => [
+                $o[1],
+            ],
+            '_resultSetMapping' => [
+                $o[2],
+            ],
+        ],
+        'Doctrine\\ORM\\Query\\Exec\\AbstractSqlExecutor' => [
+            '_sqlStatements' => [
+                1 => 'SELECT p0_.id AS id_0, p0_.name AS name_1, p0_.view_position AS view_position_2, p0_.position AS position_3, p0_.css_filter AS css_filter_4, p0_.image AS image_5, p0_.alias AS alias_6, p0_.page_content_id AS page_content_id_7 FROM page_content_category p0_ WHERE p0_.view_position IS NOT NULL ORDER BY p0_.view_position ASC, p0_.position ASC',
+            ],
+        ],
+        'stdClass' => [
+            'aliasMap' => [
+                2 => [
+                    'm' => 'App\\Entity\\PageContentCategory',
+                ],
+            ],
+            'fieldMappings' => [
+                2 => [
+                    'id_0' => 'id',
+                    'name_1' => 'name',
+                    'view_position_2' => 'viewPosition',
+                    'position_3' => 'position',
+                    'css_filter_4' => 'cssFilter',
+                    'image_5' => 'image',
+                    'alias_6' => 'alias',
+                ],
+            ],
+            'typeMappings' => [
+                2 => [
+                    'page_content_id_7' => 'integer',
+                ],
+            ],
+            'entityMappings' => [
+                2 => [
+                    'm' => null,
+                ],
+            ],
+            'metaMappings' => [
+                2 => [
+                    'page_content_id_7' => 'page_content_id',
+                ],
+            ],
+            'columnOwnerMap' => [
+                2 => [
+                    'id_0' => 'm',
+                    'name_1' => 'm',
+                    'view_position_2' => 'm',
+                    'position_3' => 'm',
+                    'css_filter_4' => 'm',
+                    'image_5' => 'm',
+                    'alias_6' => 'm',
+                    'page_content_id_7' => 'm',
+                ],
+            ],
+            'declaringClasses' => [
+                2 => [
+                    'id_0' => 'App\\Entity\\PageContentCategory',
+                    'name_1' => 'App\\Entity\\PageContentCategory',
+                    'view_position_2' => 'App\\Entity\\PageContentCategory',
+                    'position_3' => 'App\\Entity\\PageContentCategory',
+                    'css_filter_4' => 'App\\Entity\\PageContentCategory',
+                    'image_5' => 'App\\Entity\\PageContentCategory',
+                    'alias_6' => 'App\\Entity\\PageContentCategory',
+                ],
+            ],
+        ],
+    ],
+    $o[0],
+    []
+);

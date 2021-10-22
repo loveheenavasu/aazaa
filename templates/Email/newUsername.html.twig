@@ -1,0 +1,17 @@
+{% block subject %}
+    Gebruikersnaam gewijzigd - Aazaa Academie
+{% endblock %}
+{% block title %}
+    Je gebruikersnaam is gewijzigd op Aazaa.nl
+{% endblock %}
+{% block content %}
+    Uw gebruikersnaam voor uw account is succesvol gewijzigd:<br>
+    <br>
+    uw gebruikersnaam is van {{ oldUsername }} naar {{ user.username }} gewijzigd<br>
+    <br>
+    <br>
+    Aazaa Academie<br>
+    www.aazaa.nl
+{% endblock %}
+
+{% extends 'Email/base.html.twig' %}

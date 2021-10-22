@@ -1,0 +1,8 @@
+<?php return [PHP_INT_MAX, [
+    'groups' => [
+        'pageContent',
+        'location',
+    ],
+    'position' => 'position',
+    'useObjectClass' => 'App\\Entity\\PageContentRelations',
+]];

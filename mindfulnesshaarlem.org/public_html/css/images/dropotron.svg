@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW X6 -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="210mm" height="297mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 21000 29700"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .fil0 {fill:#2E344C}
+   ]]>
+  </style>
+   <mask id="id0">
+  <linearGradient id="id1" gradientUnits="userSpaceOnUse" x1="10541.4" y1="223.09" x2="10541.4" y2="29923.1">
+   <stop offset="0" style="stop-opacity:0.94902; stop-color:white"/>
+   <stop offset="1" style="stop-opacity:0.94902; stop-color:white"/>
+  </linearGradient>
+    <rect style="fill:url(#id1)" x="38" y="219" width="21008" height="29708"/>
+   </mask>
+ </defs>
+ <g id="Layer_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <polygon id="dropotron.svg" class="fil0" style="mask:url(#id0)" points="41,29923 21041,29923 21041,223 41,223 "/>
+ </g>
+</svg>

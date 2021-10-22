@@ -1,0 +1,62 @@
+<?php
+
+namespace Symfony\Component\VarExporter\Internal;
+
+return $getExpiry ? PHP_INT_MAX : Hydrator::hydrate(
+    $o = [
+        clone (($p = &Registry::$prototypes)['Doctrine\\ORM\\Mapping\\Entity'] ?? Registry::p('Doctrine\\ORM\\Mapping\\Entity')),
+        clone ($p['Doctrine\\ORM\\Mapping\\Table'] ?? Registry::p('Doctrine\\ORM\\Mapping\\Table')),
+        clone ($p['Doctrine\\ORM\\Mapping\\Index'] ?? Registry::p('Doctrine\\ORM\\Mapping\\Index')),
+        clone $p['Doctrine\\ORM\\Mapping\\Index'],
+        clone $p['Doctrine\\ORM\\Mapping\\Index'],
+        clone $p['Doctrine\\ORM\\Mapping\\Index'],
+        clone $p['Doctrine\\ORM\\Mapping\\Index'],
+    ],
+    null,
+    [
+        'stdClass' => [
+            'repositoryClass' => [
+                'App\\Repository\\WorkshopRepository',
+            ],
+            'name' => [
+                1 => 'workshops',
+                'title_idx',
+                'slug_idx',
+                'startDatetime_idx',
+                'endDatetime_idx',
+                'active_idx',
+            ],
+            'indexes' => [
+                1 => [
+                    $o[2],
+                    $o[3],
+                    $o[4],
+                    $o[5],
+                    $o[6],
+                ],
+            ],
+            'columns' => [
+                2 => [
+                    'title',
+                ],
+                [
+                    'slug',
+                ],
+                [
+                    'start_datetime',
+                ],
+                [
+                    'end_datetime',
+                ],
+                [
+                    'active',
+                ],
+            ],
+        ],
+    ],
+    [
+        $o[0],
+        $o[1],
+    ],
+    []
+);

@@ -1,0 +1,20 @@
+{% block subject %}
+    {{ subject }}
+{% endblock %}
+{% block title %}
+    {{ subject }}
+{% endblock %}
+{% block content %}
+    Beste {{ receiverName }},<br>
+    <br>
+    Deze video over {{ pageContent.title }} moet je zien!<br>
+    <br><br>
+    Link naar de video: <a href="{{ absolute_url(path('page_loader', {'slug': pageContent.path} )) }}">{{ absolute_url(path('page_loader', {'slug': pageContent.path} )) }}</a><br>
+    <br><br>
+    Goed hé!<br><br>
+	
+	Hartelijke groet,<br>
+    {% if user.firstname is not empty %} {{ user.firstname }} {{ user.lastname }}{% else %}{{ user.username }}{% endif %}
+{% endblock %}
+
+{% extends 'Email/base.html.twig' %}

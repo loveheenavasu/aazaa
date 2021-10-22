@@ -1,0 +1,57 @@
+<?php
+
+namespace Symfony\Component\VarExporter\Internal;
+
+return $getExpiry ? PHP_INT_MAX : Hydrator::hydrate(
+    $o = [
+        clone (($p = &Registry::$prototypes)['Gedmo\\Mapping\\Annotation\\Slug'] ?? Registry::p('Gedmo\\Mapping\\Annotation\\Slug')),
+        clone ($p['Gedmo\\Mapping\\Annotation\\SlugHandler'] ?? Registry::p('Gedmo\\Mapping\\Annotation\\SlugHandler')),
+        clone ($p['Gedmo\\Mapping\\Annotation\\SlugHandlerOption'] ?? Registry::p('Gedmo\\Mapping\\Annotation\\SlugHandlerOption')),
+        clone $p['Gedmo\\Mapping\\Annotation\\SlugHandlerOption'],
+        clone $p['Gedmo\\Mapping\\Annotation\\SlugHandlerOption'],
+        clone ($p['Doctrine\\ORM\\Mapping\\Column'] ?? Registry::p('Doctrine\\ORM\\Mapping\\Column')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'fields' => [
+                [
+                    'name',
+                ],
+            ],
+            'handlers' => [
+                [
+                    $o[1],
+                ],
+            ],
+            'class' => [
+                1 => 'Gedmo\\Sluggable\\Handler\\InversedRelativeSlugHandler',
+            ],
+            'options' => [
+                1 => [
+                    $o[2],
+                    $o[3],
+                    $o[4],
+                ],
+            ],
+            'name' => [
+                2 => 'relationClass',
+                'mappedBy',
+                'inverseSlugField',
+            ],
+            'value' => [
+                2 => 'App\\Entity\\PageContent',
+                'category',
+                'path',
+            ],
+            'length' => [
+                5 => 64,
+            ],
+        ],
+    ],
+    [
+        $o[0],
+        $o[5],
+    ],
+    []
+);

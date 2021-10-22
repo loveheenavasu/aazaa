@@ -1,0 +1,19 @@
+webhook_github:
+    path: /github
+    defaults: { _controller: App\Controller\Webhook\GitController::github }
+
+webhook_bitbucket:
+    path: /bitbucket
+    defaults: { _controller: App\Controller\Webhook\GitController::bitbucket }
+
+webhook_mailgun:
+    path: /mailgun
+    defaults: { _controller: App\Controller\Webhook\MailgunController::mailgun }
+
+webhook_mollie:
+    path: /mollie/webhook
+    defaults: { _controller: App\Controller\Webhook\MolliePaymentController::normalWebhook }
+
+webhook_mollie_subscription:
+    path: /mollie-subscription-status/{mollieUserId}
+    defaults: { _controller: App\Controller\Webhook\MolliePaymentController::subscriptionWebhook }

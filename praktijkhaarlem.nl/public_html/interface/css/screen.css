@@ -1,0 +1,164 @@
+/*
+	# Company: Centrumpraktijk
+	# File: screen.css
+*/
+@import url(form.css);
+@import url(layout.css);
+@import url(components.css);
+
+/* 
+	** Global reset and setting vertical rhythm
+*/
+*
+{
+	margin: 0;
+	padding: 0;
+	line-height: 122%;
+}
+body
+{
+	padding: 0;
+	
+	background-color: #003333;
+	
+	color: #ffffff;
+	font-size: 100%;
+	font-family: Verdana, Sans-Serif;
+    line-height: 1.5em; /* 16×1.125=18 */
+}
+
+/* 
+	** Headings
+*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+h7,
+h8
+{
+	padding: 0;
+	color: #f0ffff;
+}
+
+h1
+{
+	color: #000000;
+	font-size: 100%; 
+	font-size: 1.1em; 
+}
+h2
+{
+	color: #006666;
+	font-size: 110%; 
+	font-size: 1.1em; 
+}
+h3 
+{
+	color: #000;
+	font-size: 90%; 
+	font-size: 0.9em; 
+}
+h4 
+{
+	color: #000;
+	font-size: 90%; 
+	font-size: 0.9em; 
+}
+h5 
+{
+	color: #003333;
+	font-size: 100%; 
+	font-size: 1.1em; 
+}
+h6 
+{
+	color: #006666;
+	font-size: 100%; 
+	font-size: 1.1em; 
+}
+h7 
+{
+	font-size: 120%; 
+	font-size: 1.2em; 
+	font-weight: bold;
+	color: #003333;
+	text-align: center; 
+	margin: 0 0 35px 0; 
+}
+
+/* 
+	** Content Elements
+*/
+p,
+ul,
+ol,
+dl,
+fieldset
+{
+	padding-bottom: 15px;
+	line-height: 1.4em;
+}
+li
+{
+	line-height: 1.3em;
+}
+em
+{
+	font-weight: bold;
+}
+.flash-replaced .alt 
+{
+	display: block;
+	height: 0;
+	position: absolute;
+	overflow: hidden;
+	width: 0;
+}
+.flash-replaced
+{
+	line-height: 1em;
+	font-size: 20px !important;
+}
+.header .mistral-black
+{
+	text-align: center;
+	font-size: 50px !important;
+}
+
+/* 
+	** Lists
+*/
+ul ul,
+ol ol
+{
+	padding: 0;
+	list-style-position: inside;
+}
+ul li,
+ol li
+{
+	margin-left: 27px;
+}
+
+/* 
+	** Links
+*/
+a:link
+{
+	color: #003333;
+}
+a:visited
+{
+	color: #003333;
+}
+a:hover
+{
+	color:#339999;
+}
+a img
+{
+	border: 0;
+}

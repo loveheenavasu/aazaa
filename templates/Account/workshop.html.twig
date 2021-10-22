@@ -1,0 +1,47 @@
+{% block accountContent %}
+    <div class="block dark">
+        <h2>Workshops / Sessies</h2>
+        <div class="row">
+            {% if errormessage is defined and not empty %}
+                <div>{{ errormessage }}</div>
+            {% endif %}
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                {% if app.user.workshops | length  > 0 %}
+                    {% for userWorkshop in app.user.workshops %}
+                        {% if userWorkshop.workshop.active and userWorkshop.workshop.startDatetime |date('Ymd') >= "now"|date('Ymd') and userWorkshop.paid %}
+                            <div class="col-xs-12 col-sm-6 block">
+                                <div class="admin-video">
+                                    <b>{{ userWorkshop.workshop.id }} - {{ userWorkshop.workshop.title }}</b><br>
+                                    <span class="text">
+                                        {{ userWorkshop.workshop.descriptionShort }}<br>
+                                        <br>
+                                        <hr>
+                                        <strong>Datum:</strong> {{ userWorkshop.workshop.startDatetime | date('d-m-Y H:i') }}<br>
+                                        <strong>Locatie:</strong> {{ userWorkshop.workshop.location.name }}<br>
+                                        {{ userWorkshop.workshop.location.street }} {{ userWorkshop.workshop.location.housenumber }}<br>
+                                        {{ userWorkshop.workshop.location.zipcode }} {{ userWorkshop.workshop.location.city }}<br>
+                                    </span>
+                                </div>
+                                {% if userWorkshop.workshop.location is defined and userWorkshop.workshop.location.isVideo and userWorkshop.paid and userWorkshop.workshop.videoChatSessionId is not empty %}
+                                    <div class="admin-video-buttons">
+                                        <a class="btn btn-admin pull-right" href="{{ path('account_workshop_video_session', {'userWorkshop': userWorkshop.id }) }}">Start video sessie</a>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    Je kunt op dit moment geen workshops boeken
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
+
+{% extends 'Account/base.html.twig' %}

@@ -1,0 +1,10 @@
+{% if pageContentCategory is defined and pageContentCategory  %}
+    <a href="{{ path('page_loader', {'slug': pageContentCategory.path}) }}">
+        <div class="block-square template-2 text-center template2-video" style="background: none; padding: 0 10px;">
+            <h4>{{ pageContent.category.name }}</h4>
+            <span class="tag-line">{{ pageContentCategory.previewTop }}</span>
+            <span class="tag-line">{{ pageContentCategory.previewBottom }}</span>
+            <div class="clearfix"></div>
+        </div>
+    </a>
+{% endif %}

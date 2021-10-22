@@ -1,0 +1,118 @@
+{% block metaTitle %}{{ pageContent.metaTitle }}{% endblock %}
+{% block description %}{{ pageContent.metaDescription }}{% endblock %}
+
+
+{% block content %}
+    <div class="container base">
+        <div class="block dark">
+            <div class="cursus-container">
+
+                {% for message in app.flashes('danger') %}
+                    <div class="alert alert-success alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Error!</strong> {{ message }}
+                    </div>
+                {% endfor %}
+
+                <div class="row cursus-container-header">
+                    <div class="col-xs-6">
+                        {{ workshop.title }}
+                    </div>
+                    <div class="col-xs-2 cursus-container-location-pre hidden-xs">
+                        op locatie:
+                    </div>
+                    <div class="col-xs-6 col-md-4 cursus-container-location">
+                        {{ workshop.location.name }}
+                    </div>
+                </div>
+                <div class="row" style="padding-top: 40px">
+                    <div class="col-md-6">
+                        Van: {{ workshop.startDatetime | localizeddate('full', 'none') }} {{ workshop.startDatetime|date('H:i') }} uur.<br>
+                        Tot: {{ workshop.endDatetime | localizeddate('full', 'none') }} {{ workshop.endDatetime|date('H:i') }} uur.<br>
+                        {% if workshop.startDatetime | date('Ymd') != "now"|date('Ymd') %}
+                            {% if workshop.seatsAvailable > 1 %}Nog <strong>{{ workshop.seatsAvailable }}</strong> beschikbare plaatsen!<br>{% elseif workshop.seatsAvailable > 0%}<p style="color: red">Laatste plaats beschikbaar</p>{% else %}<strong>Geen plaatsen meer beschikbaar</strong>{% endif %}
+                        {% endif %}
+                        <br>
+                        {{ workshop.description }}<br>
+                    </div>
+                    {% if workshop.startDatetime | date('Ymd') == "now"|date('Ymd') %}
+                        <div class="col-md-6">
+                            <div class="block dark inline">
+                                <p class="h3">Je bent helaas te laat!</p>
+                                <br>
+                                Je kunt niet op de dag zelf nog boeken.<br>
+                                <br>
+                                Je kunt een email sturen met je verzoek naar <a href="mailto:info@aazaa.nl">info@aazaa.nl</a> en als het mogelijk is laten we je dat weten. Hoor je niets, dan was je echt te laat…
+                            </div>
+                        </div>
+                    {% else %}
+                        {% if app.user and workshop.seatsAvailable > 0 %}
+                            <div class="col-md-6">
+                                <div class="block dark inline">
+                                    <p class="h3">Inschrijven</p>
+                                    {{ price_explanation |raw }}
+                                    <form action="{{ path("workshops_cursus_register", {'workshop' :  workshop.id}) }}" method="post">
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="price" value="0" checked>€ {{ workshop.price(0) |number_format(2, ',', '.') }} <small>(Normaal tarief)</small>
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="price" value="1">€ {{ workshop.price(1) | number_format(2, ',', '.') }} <small>(25% reductie)</small>
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="price" value="2">€ {{ workshop.price(2) | number_format(2, ',', '.') }} <small>(50% reductie)</small>
+                                            </label>
+                                        </div>
+
+                                        <hr>
+                                        {% if booking_conditions is defined %}
+                                            {{ booking_conditions | raw }}
+                                        {% endif %}
+                                        <div class="checkbox input">
+                                            <label><input name="req" type="checkbox" value="1" required oninvalid="this.setCustomValidity('Je moet met de boekingsvoorwaarden akkoord gaan om de boeking te kunnen maken')">Ik ga akkoord met bovengenoemde voorwaarden</label>
+                                        </div>
+
+
+                                        <button type="submit" id="submit" name="submit" class="btn btn-aazaa pull-right">Inschrijven</button>
+                                    </form>
+                                </div>
+                            </div>
+                        {% elseif app.user %}
+                            <div class="col-md-6">
+                                <div class="block dark inline">
+                                    <p class="h3">Geen plaatsen meer beschikbaar</p>
+                                    Er is helaas geen plek meer op de door jouw gekozen dag en/of tijd. Probeer een andere dag en/of tijd waarop er nog wel beschikbare plaatsen staan aangegeven
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                </div>
+
+                <div class="row" style="padding-top: 40px">
+                    {% if workshop.startDatetime | date('Ymd') != "now"|date('Ymd') %}
+                        {% if not app.user %}
+                            <div class="col-xs-12">
+                                <h3>Inschrijven</h3>
+                                <p>Om in te schrijven, dien je eerst in te loggen. Indien je nog geen account hebt, kan je ook een gratis account aanmaken.</p>
+                                <div class="row">
+                                    {% include 'Blocks/loginOrCreateAccount.html.twig' with {'referer': app.request.uri } %}
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            {{ pageContent.content | raw }}
+        </div>
+    </div>
+    <div class="container" style="margin-top: 30px;">
+        {{ render(controller(
+            'App\\Controller\\DefaultController::navigationMiddle'
+        )) }}
+    </div>
+{% endblock %}
+
+{% extends 'Base/base.html.twig' %}

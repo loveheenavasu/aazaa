@@ -1,0 +1,13 @@
+{% block content %}
+
+    <div class="container base">
+        <div class="col-md-12">
+            <p>404 Error. Geen pagina gevonden</p>
+            {% if slug is defined and slug is not empty %}
+                voor: {{ slug }}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+{% extends 'Base/base.html.twig' %}

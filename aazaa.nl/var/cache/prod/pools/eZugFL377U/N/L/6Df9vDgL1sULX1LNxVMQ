@@ -1,0 +1,177 @@
+<?php
+
+namespace Symfony\Component\VarExporter\Internal;
+
+return $getExpiry ? PHP_INT_MAX : Hydrator::hydrate(
+    $o = [
+        clone (($p = &Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
+        clone ($p['Doctrine\\ORM\\Id\\IdentityGenerator'] ?? Registry::p('Doctrine\\ORM\\Id\\IdentityGenerator')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'name' => [
+                'App\\Entity\\UserFavorites',
+            ],
+            'namespace' => [
+                'App\\Entity',
+            ],
+            'rootEntityName' => [
+                'App\\Entity\\UserFavorites',
+            ],
+            'customRepositoryClassName' => [
+                'App\\Repository\\UserFavoritesRepository',
+            ],
+            'identifier' => [
+                [
+                    'id',
+                ],
+            ],
+            'generatorType' => [
+                4,
+            ],
+            'fieldMappings' => [
+                [
+                    'id' => [
+                        'fieldName' => 'id',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'id' => true,
+                        'columnName' => 'id',
+                    ],
+                    'created' => [
+                        'fieldName' => 'created',
+                        'type' => 'datetime',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'columnName' => 'created',
+                    ],
+                    'updated' => [
+                        'fieldName' => 'updated',
+                        'type' => 'datetime',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'columnName' => 'updated',
+                    ],
+                ],
+            ],
+            'fieldNames' => [
+                [
+                    'id' => 'id',
+                    'created' => 'created',
+                    'updated' => 'updated',
+                ],
+            ],
+            'columnNames' => [
+                [
+                    'id' => 'id',
+                    'created' => 'created',
+                    'updated' => 'updated',
+                ],
+            ],
+            'table' => [
+                [
+                    'name' => 'user_favorites',
+                    'indexes' => [
+                        'created_idx' => [
+                            'columns' => [
+                                'created',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+            'associationMappings' => [
+                [
+                    'user' => [
+                        'fieldName' => 'user',
+                        'joinColumns' => [
+                            [
+                                'name' => 'user_id',
+                                'unique' => false,
+                                'nullable' => false,
+                                'onDelete' => null,
+                                'columnDefinition' => null,
+                                'referencedColumnName' => 'id',
+                            ],
+                        ],
+                        'cascade' => [],
+                        'inversedBy' => 'favorites',
+                        'targetEntity' => 'App\\Entity\\User',
+                        'fetch' => 2,
+                        'type' => 2,
+                        'mappedBy' => null,
+                        'isOwningSide' => true,
+                        'sourceEntity' => 'App\\Entity\\UserFavorites',
+                        'isCascadeRemove' => false,
+                        'isCascadePersist' => false,
+                        'isCascadeRefresh' => false,
+                        'isCascadeMerge' => false,
+                        'isCascadeDetach' => false,
+                        'sourceToTargetKeyColumns' => [
+                            'user_id' => 'id',
+                        ],
+                        'joinColumnFieldNames' => [
+                            'user_id' => 'user_id',
+                        ],
+                        'targetToSourceKeyColumns' => [
+                            'id' => 'user_id',
+                        ],
+                        'orphanRemoval' => false,
+                    ],
+                    'pageContent' => [
+                        'fieldName' => 'pageContent',
+                        'joinColumns' => [
+                            [
+                                'name' => 'pagecontent_id',
+                                'unique' => false,
+                                'nullable' => false,
+                                'onDelete' => null,
+                                'columnDefinition' => null,
+                                'referencedColumnName' => 'id',
+                            ],
+                        ],
+                        'cascade' => [],
+                        'inversedBy' => 'favorites',
+                        'targetEntity' => 'App\\Entity\\PageContent',
+                        'fetch' => 2,
+                        'type' => 2,
+                        'mappedBy' => null,
+                        'isOwningSide' => true,
+                        'sourceEntity' => 'App\\Entity\\UserFavorites',
+                        'isCascadeRemove' => false,
+                        'isCascadePersist' => false,
+                        'isCascadeRefresh' => false,
+                        'isCascadeMerge' => false,
+                        'isCascadeDetach' => false,
+                        'sourceToTargetKeyColumns' => [
+                            'pagecontent_id' => 'id',
+                        ],
+                        'joinColumnFieldNames' => [
+                            'pagecontent_id' => 'pagecontent_id',
+                        ],
+                        'targetToSourceKeyColumns' => [
+                            'id' => 'pagecontent_id',
+                        ],
+                        'orphanRemoval' => false,
+                    ],
+                ],
+            ],
+            'idGenerator' => [
+                $o[1],
+            ],
+        ],
+    ],
+    $o[0],
+    []
+);

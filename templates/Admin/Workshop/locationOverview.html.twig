@@ -1,0 +1,49 @@
+{% block stylesheets %}
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+{% endblock %}
+{% block content %}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>Locaties</h1>
+        </div>
+        <div class="col-xs-push-6 col-xs-6">
+            <a class="pull-right btn btn-danger" href="{{ path('admin_workshop_location_edit') }}"><i class="fa fa-plus"></i> Nieuw</a>
+        </div>
+
+        <div class="col-xs-12 admin-menu" >
+            <div class="col-xs-12">
+                <table class="table table-responsive table-striped">
+                    <tr>
+                        <th{% if pagination.isSorted('l.id') %} class="sorted"{% endif %} >{{ knp_pagination_sortable(pagination, 'Id', 'l.id') }}</th>
+                        <th{% if pagination.isSorted('l.name') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Naam', 'l.name') }}</th>
+                        <th{% if pagination.isSorted('l.street') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Straat', 'l.street') }}</th>
+                        <th{% if pagination.isSorted('l.housenumber') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Huisnummer', 'l.housenumber') }}</th>
+                        <th{% if pagination.isSorted('l.price') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Prijs', 'l.price') }}</th>
+                        <th{% if pagination.isSorted('l.color') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Kleur  ', 'l.color') }}</th>
+                        <th>#</th>
+                    </tr>
+
+                    {% for location in pagination %}
+                        <tr>
+                            <td>{{ location.id }}</td>
+                            <td>{{ location.name }}</td>
+                            <td>{{ location.street }}</td>
+                            <td>{{ location.housenumber }}</td>
+                            <td>{{ location.price }}</td>
+                            <td style="background-color: {{ location.color }} "></td>
+                            <td><a class="btn btn-warning" href="{{ path('admin_workshop_location_edit', { 'id': location.id }) }}"><i class="far fa-edit"></i> Bewerken</a></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+
+                <div class="navigation">
+                    {{ knp_pagination_render(pagination) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% extends 'Admin/base.html.twig' %}
+

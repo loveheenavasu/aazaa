@@ -1,0 +1,21 @@
+<?php return [PHP_INT_MAX, [
+    'slugs' => [
+        'slug' => [
+            'fields' => [
+                'id',
+                'title',
+            ],
+            'slug' => 'slug',
+            'style' => 'lower',
+            'dateFormat' => 'Y-m-d-H:i',
+            'updatable' => true,
+            'unique' => true,
+            'unique_base' => null,
+            'separator' => '-',
+            'prefix' => '',
+            'suffix' => '',
+            'handlers' => [],
+        ],
+    ],
+    'useObjectClass' => 'App\\Entity\\Workshop',
+]];

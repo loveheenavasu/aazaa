@@ -1,0 +1,135 @@
+{% block metaTitle %}{{ pageContent.metaTitle }}{% endblock %}
+{% block description %}{{ pageContent.metaDescription }}{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/schedule.css') }}">
+{% endblock %}
+
+{% set counter = 0 %}
+
+{% block content %}
+    <div class="container base">
+        <div class="col-xs-12 block dark">
+            <div class="row">
+                {% if startDate|date("YW") > "now"|date("YW") %}
+                    <a class="col-xs-12 col-md-3 btn btn-aazaa" href="{{ path('sessions_calendar_date', {'year': startDate|date_modify("-1 week")|date("Y"), 'week': startDate|date_modify("-1 week")|date("W") }) }}">vorige week</a>
+                {% else %}
+                    <div class="col-xs-12 col-md-3"></div>
+                {% endif %}
+                <div class="col-xs-12 col-md-6" style="text-align: center"> Weeknummer: {{ startDate|date('W') }}</div>
+                <a class="col-xs-12 col-md-3 btn btn-aazaa" href="{{ path('sessions_calendar_date', {'year': startDate|date_modify("+1 week")|date("Y"), 'week': startDate|date_modify("+1 week")|date("W") }) }}">volgende week</a>
+            </div>
+
+            <div class="cd-schedule loading">
+                <div class="timeline">
+                    <ul>
+                        <li><span>09:00</span></li>
+                        <li><span>09:30</span></li>
+                        <li><span>10:00</span></li>
+                        <li><span>10:30</span></li>
+                        <li><span>11:00</span></li>
+                        <li><span>11:30</span></li>
+                        <li><span>12:00</span></li>
+                        <li><span>12:30</span></li>
+                        <li><span>13:00</span></li>
+                        <li><span>13:30</span></li>
+                        <li><span>14:00</span></li>
+                        <li><span>14:30</span></li>
+                        <li><span>15:00</span></li>
+                        <li><span>15:30</span></li>
+                        <li><span>16:00</span></li>
+                        <li><span>16:30</span></li>
+                        <li><span>17:00</span></li>
+                        <li><span>17:30</span></li>
+                        <li><span>18:00</span></li>
+                        {% if latestTime is defined and latestTime > 18 %}
+                            {% for test in 18..latestTime %}
+                                {% set counter = counter +1 %}
+                                <li><span>{{ test }}:30</span></li>
+                                <li><span>{{ test+1 }}:00</span></li>
+                            {% endfor %}
+                        {% endif %}
+                        <script>
+                            var counter = {{ counter }};
+                        </script>
+                    </ul>
+                </div>
+
+                <div class="events">
+                    <ul>
+                        {% set dateNames = ['Maandag', 'Dinsdag', 'Woensdag', 'Donderdag', 'Vrijdag', 'Zaterdag', 'Zondag'] %}
+                        {% for date, workshopData in workshops %}
+                            {% set datenummer = loop.index-1 %}
+
+                            <li class="events-group">
+                                <div class="top-info"><span>{{ dateNames[datenummer] }}<br>{{ startDate | date_modify("+"~datenummer~" day") | date('d-m-Y') }}</span></div>
+                                <ul class="{% if startDate | date_modify("+"~datenummer~" day") | date('Ymd') < "now"|date('Ymd') %}calendar-past{% elseif startDate| date_modify("+"~datenummer~" day")| date('Ymd') == "now"|date('Ymd') %}calendar-today{% endif %}">
+                                    {% for workshop in workshopData %}
+                                        <li class="single-event" data-start="{{ workshop['startTime']|date('H:i') }}" data-end="{{ workshop['endTime']|date('H:i') }}" data-color="{{ workshop['color'] }}" style="background-color: {{ workshop['color'] }}">
+                                            <a href="#0">
+                                                <em class="event-name">{{ workshop['title'] }}  <font style="color: red">{% if workshop['seatsAvailable'] < 1 %}(VOL!){% endif %}</font></em>
+                                            </a>
+                                            <div class="event-model-info">
+                                                <div>
+                                                    {{ workshop['description'] }}<br><br>
+                                                    {% if workshop['date'] | date('Ymd') != "now"|date('Ymd') %}
+                                                        {% if workshop['seatsAvailable'] > 0 %}
+                                                            <a class="btn btn-aazaa pull-right" href="{{ path('workshops_cursus_detail', {'slug': workshop['slug']}) }}">Aanmelden</a>
+                                                        {% else %}
+                                                            <b>
+                                                                Er is helaas geen plek meer op de door jou gekozen dag en/of tijd.<br>
+                                                                Probeer een andere dag en/of tijd waarop er nog wel beschikbare plaatsen staan aangegeven
+                                                            </b>
+                                                        {% endif %}
+                                                    {% else %}
+                                                        <p class="h3">Je bent helaas te laat!</p>
+                                                        <br>
+                                                        Je kunt niet op de dag zelf nog boeken.<br>
+                                                        <br>
+                                                        Je kunt een email sturen met je verzoek naar <a style="color: black" href="mailto:info@aazaa.nl">info@aazaa.nl</a> en als het mogelijk is laten we je dat weten. Hoor je niets, dan was je echt te laat…
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="event-modal">
+                    <header class="header">
+                        <div class="content">
+                            <span class="event-date"></span>
+                            <h3 class="event-name"></h3>
+                        </div>
+
+                        <div class="header-bg"></div>
+                    </header>
+
+                    <div class="body">
+                        <div class="event-info"><div></div></div>
+                        <div class="body-bg"></div>
+                    </div>
+
+                    <a href="#0" class="close"></a>
+                </div>
+                <div class="cover-layer"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        {{ render(controller(
+            'App\\Controller\\DefaultController::navigationMiddle'
+        )) }}
+    </div>
+
+{% endblock %}
+
+{% block javascript_footer %}
+    <script src="{{ asset('js/modernizr.js') }}"></script>
+    <script src="{{ asset('js/schedule.js') }}"></script>
+{% endblock %}
+{% extends 'Base/base.html.twig' %}

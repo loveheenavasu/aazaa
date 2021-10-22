@@ -1,0 +1,11 @@
+{% block content %}
+
+    <div class="container">
+        {% include 'Blocks/loginOrCreateAccount.html.twig' %}
+        {{ render(controller(
+            'App\\Controller\\DefaultController::navigationMiddle'
+        )) }}
+    </div>
+{% endblock %}
+
+{% extends 'Base/base.html.twig' %}

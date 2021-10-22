@@ -1,0 +1,39 @@
+{% block accountContent %}
+    <div class="block dark">
+        <h2>Bekeken video's</h2>
+        <div class="row">
+            {% if errormessage is defined and not empty %}
+                <div>{{ errormessage }}</div>
+            {% endif %}
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                {% if app.user.watchLog | length  < 1%}
+                    Geen bekeken video's
+                {% else %}
+                    {% for watchLog in app.user.watchLog %}
+                        <div class="col-xs-12 col-sm-6 block">
+                            <div class="admin-video">
+                                <strong>{{ watchLog.pageContent.title }}</strong>
+                                <span class="text">
+                                    {{ watchLog.pageContent.shortDescription }}
+                                    <br>
+                                    Aantal: {{ watchLog.views }} x bekeken
+                                </span>
+                            </div>
+                            <div class="admin-video-buttons">
+                                <a class="btn btn-admin pull-right" href="{{ path('page_loader', {'slug': watchLog.pageContent.path }) }}">Bekijken</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
+
+{% extends 'Account/base.html.twig' %}

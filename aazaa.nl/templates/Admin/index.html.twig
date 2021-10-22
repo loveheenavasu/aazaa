@@ -1,0 +1,57 @@
+{% block content %}
+
+    <div class="col-xs-12 col-sm-12 col-md-6">
+       <div class="panel panel-default">
+           <div class="panel-heading">
+               <strong>10 Nieuwste gebruikers</strong>
+           </div>
+           <div class="panel-body">
+               <table class="table table-responsive">
+                   <tr>
+                       <th>Id</th>
+                       <th>Datum</th>
+                       <th>Gebruikersnaam</th>
+                       <th>Voornaam</th>
+                       <th>Achternaam</th>
+                   </tr>
+                   {% for user in newUsers %}
+                       <tr>
+                           <td>{{ user.id }}</td>
+                           <td>{{ user.created | date('d-m H:i') }}</td>
+                           <td>{{ user.username }}</td>
+                           <td>{{ user.firstname }}</td>
+                           <td>{{ user.lastname }}</td>
+                       </tr>
+                   {% endfor %}
+               </table>
+           </div>
+       </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <strong>10 Laatst bekeken video's</strong>
+            </div>
+            <div class="panel-body">
+                <table class="table table-responsive">
+                    <tr>
+                        <th>Datum</th>
+                        <th>Title</th>
+                        <th>Gebruiker</th>
+                    </tr>
+                    {% for watchLog in lastViewed %}
+                        <tr>
+                            <td>{{ watchLog.updated | date('d-m H:i') }}</td>
+                            <td>{{ watchLog.pageContent.title |slice (0,20)}}...</td>
+                            <td>{% if watchLog.user.firstName is not empty or watchLog.user.lastName is not empty %}{{ watchLog.user.firstName }} {{ watchLog.user.lastName }}{% else %}{{ watchLog.user.username }}{% endif %}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+{% extends 'Admin/base.html.twig' %}

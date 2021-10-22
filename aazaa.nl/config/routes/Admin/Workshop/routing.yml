@@ -1,0 +1,25 @@
+admin_workshop_index:
+    path:     /
+    defaults: { _controller: App\Controller\Admin\WorkshopController::index }
+
+admin_workshop_edit:
+    path:     /nieuw-bewerken/
+    defaults: { _controller: App\Controller\Admin\WorkshopController::edit }
+
+admin_workshop_clone:
+    path:     /clone/
+    defaults: { _controller: App\Controller\Admin\WorkshopController::cloneWorkshops }
+
+admin_workshop_remove:
+    path:     /verwijderd/{id}/
+    defaults: { _controller: App\Controller\Admin\WorkshopController::remove }
+
+
+admin_workshop_location_index:
+    path:     /locaties/
+    defaults: { _controller: App\Controller\Admin\WorkshopController::locationOverview }
+
+admin_workshop_location_edit:
+    path:     /locaties/bewerken
+    defaults: { _controller: App\Controller\Admin\WorkshopController::editLocation }
+

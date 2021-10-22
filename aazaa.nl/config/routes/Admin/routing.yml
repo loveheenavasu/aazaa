@@ -1,0 +1,46 @@
+admin_login:
+    path:     /inloggen
+    defaults: { _controller: App\Controller\Admin\SecurityController:loginAction }
+
+admin_login_check:
+    path:     /inloggen_check
+    defaults: { _controller: App\Controller\Admin\SecurityController::checkAction }
+
+admin_logout:
+    path:     /uitloggen
+    defaults: { _controller: App\Controller\Admin\SecurityController::logoutAction }
+
+pages:
+    resource: "Page/routing.yml"
+    prefix:   /paginas/
+
+workshop:
+    resource: "Workshop/routing.yml"
+    prefix:   /workshop/
+
+collector:
+    resource: "Collector/routing.yml"
+    prefix:   /blokken/
+
+video_chat:
+    resource: "Video/routing.yml"
+    prefix:   /video-chat/
+
+users:
+    resource: "User/routing.yml"
+    prefix:   /gebruikers/
+
+
+admin_image_upload:
+    path:   /foto-uploaden/
+    defaults: { _controller: App\Controller\Admin\DefaultController::imageUpload }
+    options:
+        expose: true
+
+admin_index:
+    path:     /
+    defaults: { _controller: App\Controller\Admin\DefaultController::index }
+
+admin_background_index:
+    path: Verander-de-achtergrond
+    defaults: { _controller: App\Controller\Admin\DefaultController::veranderDeAchtergrond }

@@ -1,0 +1,21 @@
+account_favorites_toggle:
+    path:     /toggle-favorite/
+    defaults: { _controller: App\Controller\AjaxController::toggleFavorite }
+    methods: [POST]
+    options:
+        expose: true
+
+account_share_video:
+    path:     /deel-video/
+    defaults: { _controller: App\Controller\AjaxController::shareVideo }
+    methods: [POST]
+    options:
+        expose: true
+
+
+account_share_page:
+    path:     /deel-pagina/
+    defaults: { _controller: App\Controller\AjaxController::sharePage }
+    methods: [POST]
+    options:
+        expose: true

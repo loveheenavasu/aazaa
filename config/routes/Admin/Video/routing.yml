@@ -1,0 +1,16 @@
+video_chat_index:
+  path:     /
+  defaults: { _controller: App\Controller\Admin\VideoController::index }
+
+video_chat_create:
+  path:     /{workshop}/aanmaken
+  defaults: { _controller: App\Controller\Admin\VideoController::create }
+
+video_chat_open:
+  path:     /{workshop}/open
+  defaults: { _controller: App\Controller\Admin\VideoController::open }
+
+video_chat_close:
+  path:     /{workshop}/sluiten
+  defaults: { _controller: App\Controller\Admin\VideoController::close }
+

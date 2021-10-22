@@ -1,0 +1,81 @@
+{% block accountContent %}
+
+    <div class="block dark">
+        <h2>Profiel</h2>
+        <div class="row">
+            <div class="col-xs-12">
+                {% if errormessage is defined and not empty %}
+                    <div>{{ errormessage }}</div>
+                {% endif %}
+                <form action="{{ path("account_update") }}" method="post">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token('update') }}" />
+                    <div class="row">
+                        <label class="input col-xs-12">
+                            <div class="input-group col-xs-12">
+                                <label>Gebruikersnaam: *</label>
+                                <input type="text" class="form-control input-aazaa col-xs-8" name="username" required="required" value="{{ app.user.username }}">
+                            </div>
+                        </label>
+                        {#<label class="input col-xs-4 col-sm-2">#}
+                            {#<div class="input-group col-xs-12">#}
+                                {#<label for="gender">Aanhef:</label>#}
+                                {#<select name="gender" class="form-control input-aazaa" id="gender">#}
+                                    {#<option value="m" {% if app.user.username == 'm'%}selected{% endif %}>Dhr</option>#}
+                                    {#<option value="f" {% if app.user.username == 'f'%}selected{% endif %}>Mevr</option>#}
+                                {#</select>#}
+                            {#</div>#}
+                        {#</label>#}
+                        <label class="input col-xs-12 col-sm-6">
+                            <div class="input-group col-xs-12">
+                                <label>Voornaam:</label>
+                                <input type="text" class="form-control input-aazaa col-xs-8" name="firstname" value="{{ app.user.firstname }}">
+                            </div>
+                        </label>
+                        <label class="input col-xs-12 col-sm-6">
+                            <div class="input-group col-xs-12">
+                                <label>Achternaam:</label>
+                                <input type="text" class="form-control input-aazaa col-xs-8" name="lastname" value="{{ app.user.lastname }}">
+                            </div>
+                        </label>
+
+                        <label class="input col-xs-12">
+                            <div class="input-group col-xs-12">
+                                <label>E-mailadres: *</label>
+                                <input type="email" class="form-control input-aazaa col-xs-8" name="email" value="{{ app.user.email }}" placeholder="E-mailadres" required="required" />
+                            </div>
+                        </label>
+
+                        <br>
+                        <br>
+                        <div class="col-xs-12">
+                            <h4>Wachtwoord Wijzigen:  <small>Invullen enkel nodig, indien uw wachtwoord wilt wijzigen</small></h4>
+                        </div>
+                        <label class="input col-xs-12">
+                            <div class="input-group col-xs-12">
+                                <label>Wachtwoord:</label>
+                                <input type="password" pattern=".{5,}" oninvalid="this.setCustomValidity('Wachtwoord is verplicht en moet minimaal 5 tekens lang zijn')" oninput="this.setCustomValidity('')" class="form-control input-aazaa col-xs-8" name="password" placeholder="Wachtwoord" />
+                            </div>
+                        </label>
+                        <label class="input col-xs-12">
+                            <div class="input-group col-xs-12">
+                                <label>Herhaal Wachtwoord:</label>
+                                <input type="password" pattern=".{5,}" oninvalid="this.setCustomValidity('Wachtwoord is verplicht en moet minimaal 5 tekens lang zijn')" oninput="this.setCustomValidity('')" class="form-control input-aazaa col-xs-8" name="password_check" placeholder="Wachtwoord controle" />
+                            </div>
+                        </label>
+
+                        <div class="checkbox input col-xs-12">
+                            <label><input name="mailing" type="checkbox" value="1" {% if app.user.mailingSubscription %}checked{% endif %}>Inschrijven voor de mailing</label>
+                        </div>
+
+                    </div>
+                    <div class="col-xs-12">
+                        <input type="submit" id="_submit" name="_submit" value="Opslaan" class="btn btn-aazaa pull-right" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% extends 'Account/base.html.twig' %}

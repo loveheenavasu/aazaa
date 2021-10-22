@@ -1,0 +1,35 @@
+admin_page_overview:
+    path:     /
+    defaults: { _controller: App\Controller\Admin\PageController::index }
+
+admin_page_edit:
+    path:     /nieuw-bewerken/
+    defaults: { _controller: App\Controller\Admin\PageController::edit }
+
+admin_page_edit_content:
+    path:     /content-nieuw-bewerken/
+    defaults: { _controller: App\Controller\Admin\PageController::editContent }
+
+
+
+admin_page_category:
+    path:     /categorieen/
+    defaults: { _controller: App\Controller\Admin\PageController::category }
+
+admin_page_category_edit:
+    path:     /categorieen-nieuw-bewerken/
+    defaults: { _controller: App\Controller\Admin\PageController::editCategory }
+
+admin_page_get_template:
+    path:     /load-template/
+    defaults: { _controller: App\Controller\Admin\PageController::getTemplateSettings }
+    methods: [POST]
+    options:
+        expose: true
+
+admin_page_category_sort:
+    path:     /categorieen-sorteren/
+    defaults: { _controller: App\Controller\Admin\PageController::sort }
+    methods: [POST]
+    options:
+        expose: true

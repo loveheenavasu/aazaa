@@ -1,0 +1,48 @@
+{% block content %}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>Gebruikers</h1>
+        </div>
+        <div class="col-xs-12">
+            <table class="table table-responsive table-striped">
+                <tr>
+                    <th{% if pagination.isSorted('u.id') %} class="sorted"{% endif %} >{{ knp_pagination_sortable(pagination, 'Id', 'u.id') }}</th>
+                    <th{% if pagination.isSorted('u.email') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'E-mail', 'u.email') }}</th>
+                    <th{% if pagination.isSorted('u.firstname') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Voornaam', 'u.firstname') }}</th>
+                    <th{% if pagination.isSorted('u.lastname') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Achternaam', 'u.lastname') }}</th>
+                    <th{% if pagination.isSorted('u.subscriptionActive') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'lidmaatschap', 'u.subscriptionActive') }}</th>
+                    <th{% if pagination.isSorted('u.subscriptionActiveTillDate') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Geldig tot', 'u.subscriptionActiveTillDate') }}</th>
+                    <th>#</th>
+                </tr>
+
+                {% for user in pagination %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.firstname }}</td>
+                        <td>{{ user.lastname }}</td>
+                        <td>{% if user.subscriptionActive %}Ja{% else %}Nee{% endif %}</td>
+                        <td>{% if user.subscriptionActiveTillDate %}{{ user.subscriptionActiveTillDate | date('d-m-Y H:i:s') }}{% else %}-{% endif %}</td>
+                        <td>
+                            {% if user.enabled %}
+                                <a class="btn btn-danger" onclick='return confirm("Weet je het zeker?")' href="{{ path('admin_user_disable', { 'user': user.id }) }}"><i class="fas fa-trash-alt"></i> Uitschakelen</a>
+                            {% else %}
+                                <a class="btn btn-success" onclick='return confirm("Weet je het zeker?")' href="{{ path('admin_user_enable', { 'user': user.id }) }}"><i class="fas fa-check"></i> Inschakelen</a>
+                            {% endif %}
+                            <a class="btn btn-warning" href="{{ path('admin_user_detail', { 'user': user.id }) }}"><i class="fas fa-eye"></i> Bekijken</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+            <div class="navigation">
+                {{ knp_pagination_render(pagination) }}
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+{% extends 'Admin/base.html.twig' %}
+

@@ -1,0 +1,17 @@
+{% block subject %}
+    Gebruikersnaam gewijzigd - Aazaa.org
+{% endblock %}
+{% block title %}
+    Gebruikersnaam gewijzigd op Aazaa.org
+{% endblock %}
+{% block content %}
+    Uw gebruikersnaam voor uw account is succesvol gewijzigd:<br>
+    <br>
+    uw gebruikersnaam is van {{ oldUsername }} naar {{ user.username }} gewijzigd<br>
+    <br>
+    <br>
+    Met vriendelijke groet,<br>
+    Aazaa.org
+{% endblock %}
+
+{% extends 'Email/base.html.twig' %}

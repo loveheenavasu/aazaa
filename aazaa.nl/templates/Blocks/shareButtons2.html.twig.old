@@ -1,0 +1,29 @@
+<div class="row" id="templatesharebutton">
+    <div class="col-xs-12 col-sm-6 col-md-4" style="margin-bottom: 15px">
+        {% if app.user %}
+            {% if pageContent is defined and pageContent.vimeoId is defined and pageContent.vimeoId is not empty %}
+                <div style="cursor: pointer" data-toggle="modal" data-target="#shareVideoModel">
+                    <img src="{{ asset('images/deel_video.png') }}" class="img-responsive" alt="Delen">
+                </div>
+            {% else %}
+                <div style="cursor: pointer" data-toggle="modal" data-target="#sharePageModel">
+                    <img src="{{ asset('images/deel_video.png') }}" class="img-responsive" alt="Delen">
+                </div>
+            {% endif %}
+        {% else %}
+            <a href="{{ path('account_index') }}">
+                <img src="{{ asset('images/deel_video.png') }}" class="img-responsive" alt="Delen">
+            </a>
+        {% endif %}
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-4" style="margin-bottom: 15px">
+        <a href="{{ path('cursussen') }}">
+            <img src="{{ asset('images/cursussen.png') }}" class="img-responsive" alt="Cursussen">
+        </a>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-4" style="margin-bottom: 15px">
+        <a href="{{ path('sessions_calendar') }}">
+            <img src="{{ asset('images/sessies.png') }}" class="img-responsive" alt="Sessies">
+        </a>
+    </div>
+</div>

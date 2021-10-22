@@ -1,0 +1,7 @@
+{% block subject %}{{ subject }}{% endblock %}
+{% block title %}{{ subject }}{% endblock %}
+{% block content %}{{ content | raw }}{% endblock %}
+
+{% set unsubscribe = true %}
+
+{% extends 'Email/base.html.twig' %}

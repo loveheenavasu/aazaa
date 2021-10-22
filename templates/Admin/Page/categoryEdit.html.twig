@@ -1,0 +1,146 @@
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>Categorie</h1>
+        </div>
+        <div class="col-xs-12">
+            <form method="post" action="{{ path('admin_page_category_edit') }}" enctype="multipart/form-data">
+                <input type="hidden" name="categoryId" value="{% if category is defined and category is not empty %}{{ category.id }}{% endif %}">
+                <div class="form-group">
+                    <label for="name">Naam *</label>
+                    <input class="form-control" id="name" name="name" value="{% if category is defined and category is not empty %}{{ category.name }}{% endif %}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="menupos">Positie:</label>
+                    <select class="form-control" id="menupos" name="viewPosition">
+                        <option value="">Geen</option>
+                        <option value="Boven" {% if category is defined and category is not empty %}{% if category.viewPosition == 'Boven' %}selected{% endif %}{% endif %}>Boven</option>
+                        <option value="Hoofdmenu" {% if category is defined and category is not empty %}{%  if category.viewPosition == 'Hoofdmenu' %}selected{% endif %}{% endif %}>Hoofdmenu</option>
+                        <option value="Pagina_menu" {% if category is defined and category is not empty %}{%  if category.viewPosition == 'Pagina_menu' %}selected{% endif %}{% endif %}>Pagina Menu</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    {% if category is defined and category is not empty and category.image is not empty%}
+                        <img src="{{ category.image }}" class="img-responsive">
+                    {% endif %}
+                    <label for="image">Menu plaatje</label>
+                    <input type="file" name="image" accept="image/png,image/x-png,image/gif,image/jpeg">
+                </div>
+
+
+                {% if pageContents is defined and pageContents is not empty %}
+                    <div class="form-group">
+                        <label for="pageContent">Menu pagina:</label>
+                        <select class="form-control" id="pageContent" name="pageContent">
+                            <option value="">Geen</option>
+                            {% for page in pageContents %}
+                                <option value="{{ page.id }}" {% if category is defined and category is not empty %} {% if category.pageContent is not empty and category.pageContent.id == page.id %}selected{% endif %}{% endif %}>{{ page.title }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                {% endif %}
+
+
+                {% set types = ['template1', 'template1-betaald', 'template2', 'template2-betaald'] %}
+                {% for type in types %}
+                    {% set f = '' %}
+                    {% if category is defined and category is not empty %}
+                        {% for filter, value in category.cssFilter %}
+                            {% if filter == type %}
+                                {% set f = value %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            {{ type | capitalize }}
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-xs-4">
+                                <div id="{{ type }}" class="block video-preview" style="filter: {{ f }}">
+                                    <div class="video-layer"></div>
+                                </div>
+                            </div>
+                            <input class="checkfilter" type="hidden" id="{{ type }}-value" name="filter[{{ type }}]" value="{{ f }}">
+                            <div class="col-xs-6">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <div class="panel-title">Weergave opties</div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <label><i class="fas fa-sun" aria-hidden="true"></i></label>
+                                        <input onchange="color('{{ type }}')" type="range" class="brightness" id="{{ type }}-brightness-slider" min="0.5" max="3" step=".01" value="1"> -> <span id="{{ type }}-brightness">1</span><br>
+                                        <label><i class="fas fa-adjust" aria-hidden="true"></i></label>
+                                        <input onchange="color('{{ type }}')" type="range" class="contrast" id="{{ type }}-contrast-slider" min=".5" max="3" step=".01" value="1"> -> <span id="{{ type }}-contrast">1</span><br>
+                                        <label><i class="fas fa-paint-brush" aria-hidden="true"></i></label>
+                                        <input onchange="color('{{ type }}')" type="range" class="hue" id="{{ type }}-hue-slider" min="0" max="359" step="1" value="0"> -> <span id="{{ type }}-hue">0</span><br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+
+                <a href="{{ path('admin_page_category') }}" class="btn btn-default pull-left">Terug</a>
+                <button type="submit" class="btn btn-success pull-right">Opslaan</button>
+            </form>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block javascript_footer %}
+    <script>
+
+        $(document).ready(function () {
+           $(".checkfilter").each(function(){
+               var filter = $(this).val();
+
+               var brightnessVal = filter.match(/brightness\((.*?)\)/);
+               if(brightnessVal){
+                   var brightness = $(this).parent().find("input.brightness");
+                   brightness.val(brightnessVal[1]);
+                   brightness.next("span").html(brightnessVal[1]);
+               }
+
+               var contrastVal = filter.match(/contrast\((.*?)\)/);
+               if(contrastVal){
+                   var contrast = $(this).parent().find("input.contrast");
+                   contrast.val(contrastVal[1]);
+                   contrast.next("span").html(contrastVal[1]);
+               }
+
+               var hueVal = filter.match(/hue-rotate\((.*?)deg\)/);
+               if(hueVal){
+                   var hue = $(this).parent().find("input.hue");
+                   hue.val(hueVal[1]);
+                   hue.next("span").html(hueVal[1]);
+               }
+
+           });
+        });
+
+        function color(type){
+            var brightness = $('#'+type+'-brightness-slider').val();
+            var contrast = $('#'+type+'-contrast-slider').val();
+            var hue = $('#'+type+'-hue-slider').val();
+            $('#'+type+'-brightness').html(brightness);
+            $('#'+type+'-contrast').html(contrast);
+            $('#'+type+'-hue').html(hue);
+
+            var filter = "brightness(" + brightness + ") contrast(" + contrast + ") hue-rotate(" + hue + "deg)";
+            $('#'+type+'-value').val(filter);
+            $('#'+type).css("filter", filter);
+        }
+
+    </script>
+{% endblock %}
+
+{% extends 'Admin/base.html.twig' %}
+

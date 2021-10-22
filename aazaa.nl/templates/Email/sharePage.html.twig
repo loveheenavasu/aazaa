@@ -1,0 +1,18 @@
+{% block subject %}
+    {{ subject }}
+{% endblock %}
+{% block title %}
+    {{ subject }}
+{% endblock %}
+{% block content %}
+    Beste {{ receiverName }},<br>
+    <br>
+    Graag wil ik de volgende pagina met je delen!<br>
+    <br>
+    Link naar de pagina: <a href="{{ pageUrl }}">{{ pageUrl }}</a><br>
+    <br>
+    Met vriendelijke groet,<br>
+    {% if user.firstname is not empty %} {{ user.firstname }} {{ user.lastname }}{% else %}{{ user.username }}{% endif %}
+{% endblock %}
+
+{% extends 'Email/base.html.twig' %}

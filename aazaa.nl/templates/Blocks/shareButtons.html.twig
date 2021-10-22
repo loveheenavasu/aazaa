@@ -1,0 +1,31 @@
+{% if menuItems is defined and menuItems is not empty %}
+    <div class="row" id="templatesharebutton">
+        {% for menuItem in menuItems %}
+            {% if menuItem.viewPosition == 'Pagina_menu' and menuItem.image %}
+                <div class="col-xs-12 col-sm-6 col-md-3" style="margin-bottom: 15px">
+                    {% if menuItem.alias == 'shareVideoModel' %}
+                        {% if app.user %}
+                            {% if pageContent is defined and pageContent.vimeoId is defined and pageContent.vimeoId is not empty %}
+                                <div style="cursor: pointer" data-toggle="modal" data-target="#shareVideoModel">
+                                    <img src="{{ menuItem.image }}" class="img-responsive" alt="{{ menuItem.name }}">
+                                </div>
+                            {% else %}
+                                <div style="cursor: pointer" data-toggle="modal" data-target="#sharePageModel">
+                                    <img src="{{ menuItem.image }}" class="img-responsive" alt="{{ menuItem.name }}">
+                                </div>
+                            {% endif %}
+                        {% else %}
+                            <a href="{{ path('account_index') }}">
+                                <img src="{{ menuItem.image }}" class="img-responsive" alt="{{ menuItem.name }}">
+                            </a>
+                        {% endif %}
+                    {% else %}
+                        <a href="{{ path('page_loader', {'slug': menuItem.alias}) }}">
+                            <img src="{{ menuItem.image }}" class="img-responsive" alt="{{ menuItem.name }}">
+                        </a>
+                    {% endif %}
+                </div>        
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
